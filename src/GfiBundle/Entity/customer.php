@@ -34,6 +34,13 @@ class customer
     private $customerCards;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creation_date", type="datetimetz")
+     */
+    private $creationDate;
+    
+    /**
      * Get id
      *
      * @return int

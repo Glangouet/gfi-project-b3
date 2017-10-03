@@ -1,11 +1,19 @@
-gfi_index:
+gfi_listCard:
     path:     /
-    defaults: { _controller: GfiBundle:Index:index }
+    defaults: { _controller: GfiBundle:Gfi:listCard }
 
-gfi_admin_index:
-    path:     /admin/
-    defaults: { _controller: GfiBundle:Admin:adminIndex }
+gfi_createCard:
+    path:     /createCard
+    defaults: { _controller: GfiBundle:Gfi:createCard }
+
+gfi_createCustomer:
+    path:     /createCustomer
+    defaults: { _controller: GfiBundle:Gfi:createCustomer }
 
 gfi_admin_addUser:
     path:     /admin/addUser
     defaults: { _controller: GfiBundle:Admin:addUser }
+
+gfi_admin_users:
+    path:     /admin/users
+    defaults: { _controller: GfiBundle:Admin:users }

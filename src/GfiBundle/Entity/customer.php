@@ -36,7 +36,7 @@ class customer
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creation_date", type="datetimetz")
+     * @ORM\Column(name="creation_date", type="datetime")
      */
     private $creationDate;
     
@@ -51,27 +51,86 @@ class customer
     }
 
     /**
-     * Set customer
-     *
-     * @param string $customer
-     *
-     * @return customer
+     * @param $name
+     * @return $this
      */
     public function setName($name)
     {
-        $this->customer = $customer;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get customer
-     *
      * @return string
      */
     public function getName()
     {
-        return $this->customer;
+        return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->customerCards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     *
+     * @return customer
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Add customerCard
+     *
+     * @param \GfiBundle\Entity\customer_card $customerCard
+     *
+     * @return customer
+     */
+    public function addCustomerCard(\GfiBundle\Entity\customer_card $customerCard)
+    {
+        $this->customerCards[] = $customerCard;
+
+        return $this;
+    }
+
+    /**
+     * Remove customerCard
+     *
+     * @param \GfiBundle\Entity\customer_card $customerCard
+     */
+    public function removeCustomerCard(\GfiBundle\Entity\customer_card $customerCard)
+    {
+        $this->customerCards->removeElement($customerCard);
+    }
+
+    /**
+     * Get customerCards
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCustomerCards()
+    {
+        return $this->customerCards;
     }
 }
-

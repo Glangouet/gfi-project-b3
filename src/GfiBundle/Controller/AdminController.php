@@ -11,14 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function adminIndexAction()
-    {
-        return $this->render('GfiBundle:Gfi/admin:index.html.twig');
-    }
-
-    /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -36,6 +28,19 @@ class AdminController extends Controller
         }
         return $this->render('GfiBundle:Gfi/admin:addUser.html.twig', array(
             'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function usersAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repoUser = $em->getRepository('GfiBundle:User');
+        $users = $repoUser->findAll();
+        return $this->render('GfiBundle:Gfi/admin:users.html.twig', array(
+            'users' => $users
         ));
     }
 }

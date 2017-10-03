@@ -105,17 +105,19 @@ class customer_card
      */
     private $statut;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="userCards")
-     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     */
-    private $idCom;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="customer", inversedBy="customerCards")
      * @ORM\JoinColumn(name="id_customer", referencedColumnName="id")
      */
     private $idCustomer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="contact_customer", inversedBy="contactCards")
+     * @ORM\JoinColumn(name="id_contact", referencedColumnName="id")
+     */
+    private $idContact;
 
     /**
      * Get id

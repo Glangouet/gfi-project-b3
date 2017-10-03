@@ -24,7 +24,7 @@ class customer_card
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_card", type="datetimetz")
+     * @ORM\Column(name="date_card", type="datetime")
      */
     private $dateCard;
 
@@ -73,7 +73,7 @@ class customer_card
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_at_the_latest", type="datetimetz")
+     * @ORM\Column(name="start_at_the_latest", type="datetime")
      */
     private $startAtTheLatest;
 
@@ -106,7 +106,7 @@ class customer_card
     private $statut;
 
     /**
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="userCards")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userCards")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $idUser;
@@ -124,10 +124,11 @@ class customer_card
      */
     private $idContact;
 
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -271,7 +272,7 @@ class customer_card
     /**
      * Get durationMonth
      *
-     * @return int
+     * @return integer
      */
     public function getDurationMonth()
     {
@@ -295,7 +296,7 @@ class customer_card
     /**
      * Get nbDayWeek
      *
-     * @return int
+     * @return integer
      */
     public function getNbDayWeek()
     {
@@ -423,51 +424,74 @@ class customer_card
     }
 
     /**
-     * Set idCom
+     * Set idUser
      *
-     * @param \stdClass $idCom
+     * @param \GfiBundle\Entity\User $idUser
      *
      * @return customer_card
      */
-    public function setIdCom($idCom)
+    public function setIdUser(\GfiBundle\Entity\User $idUser = null)
     {
-        $this->idCom = $idCom;
+        $this->idUser = $idUser;
 
         return $this;
     }
 
     /**
-     * Get idCom
+     * Get idUser
      *
-     * @return \stdClass
+     * @return \GfiBundle\Entity\User
      */
-    public function getIdCom()
+    public function getIdUser()
     {
-        return $this->idCom;
+        return $this->idUser;
     }
 
     /**
-     * Set idCust
+     * Set idCustomer
      *
-     * @param \stdClass $idCust
+     * @param \GfiBundle\Entity\customer $idCustomer
      *
      * @return customer_card
      */
-    public function setIdCust($idCust)
+    public function setIdCustomer(\GfiBundle\Entity\customer $idCustomer = null)
     {
-        $this->idCust = $idCust;
+        $this->idCustomer = $idCustomer;
 
         return $this;
     }
 
     /**
-     * Get idCust
+     * Get idCustomer
      *
-     * @return \stdClass
+     * @return \GfiBundle\Entity\customer
      */
-    public function getIdCust()
+    public function getIdCustomer()
     {
-        return $this->idCust;
+        return $this->idCustomer;
+    }
+
+    /**
+     * Set idContact
+     *
+     * @param \GfiBundle\Entity\contact_customer $idContact
+     *
+     * @return customer_card
+     */
+    public function setIdContact(\GfiBundle\Entity\contact_customer $idContact = null)
+    {
+        $this->idContact = $idContact;
+
+        return $this;
+    }
+
+    /**
+     * Get idContact
+     *
+     * @return \GfiBundle\Entity\contact_customer
+     */
+    public function getIdContact()
+    {
+        return $this->idContact;
     }
 }
-

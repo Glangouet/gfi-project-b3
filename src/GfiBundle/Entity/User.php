@@ -23,7 +23,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="customer_card", mappedBy="id_user", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="customer_card", mappedBy="idUser", cascade={"remove", "persist"})
      */
     protected $userCards;
 

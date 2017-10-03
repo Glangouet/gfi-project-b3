@@ -109,7 +109,7 @@ class customer_card
      * @ORM\ManyToOne(targetEntity="user", inversedBy="userCards")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
-    private $idCom;
+    private $idUser;
 
 
     /**

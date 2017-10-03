@@ -24,10 +24,14 @@ class customer
     /**
      * @var string
      *
-     * @ORM\Column(name="customer", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $customer;
+    private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="customer_card", mappedBy="idCustomer")
+     */
+    private $customerCards;
 
     /**
      * Get id
@@ -46,7 +50,7 @@ class customer
      *
      * @return customer
      */
-    public function setCustomer($customer)
+    public function setName($name)
     {
         $this->customer = $customer;
 
@@ -58,7 +62,7 @@ class customer
      *
      * @return string
      */
-    public function getCustomer()
+    public function getName()
     {
         return $this->customer;
     }

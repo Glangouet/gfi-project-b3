@@ -71,13 +71,6 @@ class CustomerCard
     private $rate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="consultantName", type="text")
-     */
-    private $consultantName;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="userCards")
      * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
@@ -285,30 +278,6 @@ class CustomerCard
     public function getRate()
     {
         return $this->rate;
-    }
-
-    /**
-     * Set consultantName
-     *
-     * @param string $consultantName
-     *
-     * @return CustomerCard
-     */
-    public function setConsultantName($consultantName)
-    {
-        $this->consultantName = $consultantName;
-
-        return $this;
-    }
-
-    /**
-     * Get consultantName
-     *
-     * @return string
-     */
-    public function getConsultantName()
-    {
-        return $this->consultantName;
     }
 
     /**

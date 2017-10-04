@@ -45,13 +45,22 @@ class CardController extends Controller
     }
 
     /**
-     * @param CustomerCard $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param CustomerCard $card
+     * @param Request $request
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(CustomerCard $id)
+    public function editAction(CustomerCard $card, Request $request)
     {
-        
-        return $this->render('GfiBundle:Gfi/Card:editCard.html.twig');
+        $form = $this->createForm(CustomerCardType::class, $card);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $serviceCard = $this->get('gfi.card');
+            $response = $serviceCard->editCard($form, $card);
+            return new JsonResponse($response);
+        }
+        return $this->render('GfiBundle:Gfi/Card:editCard.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

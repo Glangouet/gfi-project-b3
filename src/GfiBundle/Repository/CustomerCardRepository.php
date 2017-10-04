@@ -1,6 +1,7 @@
 <?php
 
 namespace GfiBundle\Repository;
+use GfiBundle\Entity\User;
 
 /**
  * CustomerCardRepository
@@ -10,4 +11,14 @@ namespace GfiBundle\Repository;
  */
 class CustomerCardRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function cardsByUser(User $user)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->join('c.users', 'u')
+            ->where(':user = u.id')
+            ->orderBy('c.id', 'DESC')
+            ->setParameter('user', $user);
+        
+        return $qb->getQuery()->getResult();
+    }
 }

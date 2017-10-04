@@ -24,7 +24,7 @@ class ContactCustomer
 
     /**
      * @var string
-     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -49,11 +49,14 @@ class ContactCustomer
      */
     private $customer;
 
-
+    /**
+     * ContactCustomer constructor.
+     */
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
     }
+    
 
     /**
      * Get id
@@ -159,5 +162,29 @@ class ContactCustomer
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set customerCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
+     *
+     * @return ContactCustomer
+     */
+    public function setCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard = null)
+    {
+        $this->customerCard = $customerCard;
+
+        return $this;
+    }
+
+    /**
+     * Get customerCard
+     *
+     * @return \GfiBundle\Entity\CustomerCard
+     */
+    public function getCustomerCard()
+    {
+        return $this->customerCard;
     }
 }

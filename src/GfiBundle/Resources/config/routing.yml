@@ -7,7 +7,7 @@ gfi_card_create:
     defaults: { _controller: GfiBundle:Card:create }
 
 gfi_card_edit:
-    path:     /edit
+    path:     /edit/{card}
     defaults: { _controller: GfiBundle:Card:edit }
 
 gfi_card_view:

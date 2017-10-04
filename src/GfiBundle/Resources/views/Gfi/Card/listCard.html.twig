@@ -1,104 +1,48 @@
-<!DOCTYPE html>
-<html  >
-    <head>
-        <meta charset="utf-8" />
-        <title>GFI Companion</title>
+{% extends "GfiBundle:Gfi:layout.html.twig" %}
 
-        
+{% block content %}
+    <table class="col-sm-12">
+        <tr>
+            <th class="col-sm-1"></th>
+            <th class="col-sm-3">Status</th>
+            <th class="col-sm-4">Name</th>
+            <th class="col-sm-4">Date</th>
+        </tr>
+        <tbody ng-repeat="client in listeClients track by $index">
+        <tr ng-class="{'peer': $index %2 == 0}">
 
-    </head>
+            <td style="text-align:center" align="center" class="col-sm-1">
+                <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse"
+                   class="table-link accordian-toggle collapsed" aria-expanded="false">
+                    <span class="glyphicon glyphicon-th-list" style="color:black"></span>
+                </a>
+            </td>
+            <td class="col-sm-3">
+                <label>
+                    {[{client.nom}]}
+                </label>
+            </td>
+            <td class="col-sm-4">
+                <label>
+                    {[{client.titre}]}
+                </label>
+            </td>
+            <td class="col-sm-4">
+                <label>
+                    {[{client.date}]}
+                </label>
+            </td>
+        </tr>
+        <tr ng-repeat-end class="no-background no-hover">
+            <td col-sm-1></td>
+            <td colspan="3" col-sm-11>
 
-    <body ng-app="gfiApp">
-        <section ng-controller="accueilCtrl">
-            
-            <div>
-                <nav class="navbar navbar-inverse" role="navigation">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            
-                            <span class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="float:left; margin-left: 10px">
-
-                            <i class="glyphicon glyphicon-th-list" aria-hidden="true"></i>
-                            </span>
-                            
-                        </div>
-                        <div id="navbar" class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <!-- Menu haut -->
-                                <li class="active"><a href="#">Accueil</a></li>
-                                <li><a href="#about">Modifier ma liste</a></li>
-                            </ul>
-                        </div><!--/.nav-collapse -->
-                    </div>
-                </nav>
-            <!-- Sidebar -->
-            
-            <!-- Page content -->
-                <div id="page-content-wrapper">
-                    <div class="page-content">
-                        <div class="container-fluid">
-                            
-                            <table class="col-sm-12">
-                                <tr>
-                                    <th class="col-sm-1"> </th>
-                                    <th class="col-sm-3">Status</th>
-                                    <th class="col-sm-4">Name</th>
-                                    <th class="col-sm-4">Date</th>
-                                </tr>
-                                <tbody ng-repeat="client in listeClients track by $index">
-                                <tr ng-class="{'peer': $index %2 == 0}">
-                               
-                                    <td style="text-align:center" align="center" class="col-sm-1">
-                                        <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse" class="table-link accordian-toggle collapsed" aria-expanded="false" >
-                                            <span class="glyphicon glyphicon-th-list" style="color:black"></span>
-                                        </a>
-                                    </td>
-                                    <td class="col-sm-3">
-                                         <label >
-                                            {[{client.nom}]}    
-                                         </label>   
-                                    </td>
-                                    <td class="col-sm-4">
-                                         <label >
-                                            {[{client.titre}]}    
-                                         </label>   
-                                    </td>
-                                    <td class="col-sm-4">
-                                         <label >
-                                            {[{client.date}]}    
-                                         </label>   
-                                    </td>
-                                </tr>
-                                <tr ng-repeat-end class="no-background no-hover">
-                                <td col-sm-1></td>
-                                <td colspan="3" col-sm-11>
-
-                                    <div class="collapse" id="_detailClient-{[{$index}]}">
-                                        aaaaa
-                                    </div>
-                                </td>
-                                    
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="collapse" id="_detailClient-{[{$index}]}">
+                    aaaaa
                 </div>
-            </div>
-        </section>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('bundles/gfi/css/site.css') }}">
+            </td>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.6/angular-resource.js"></script>
-        <script src="{{ asset("bundles/gfi/js/gfiFactories.js") }}"></script>
-        <script src="{{ asset("bundles/gfi/js/accueilController.js") }}"></script>
-        <script>
-            angular.module('gfiApp').config(function($interpolateProvider){
-            $interpolateProvider.startSymbol('{[{').endSymbol('}]}');});
-        </script>
-    </body>
-</html>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

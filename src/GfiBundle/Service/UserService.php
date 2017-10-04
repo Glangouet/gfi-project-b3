@@ -38,4 +38,6 @@ class UserService
         $repoUser = $this->em->getRepository("GfiWebBundle:UserRepository");
         return $repoUser->findBy(array("role" => $ROLE));
     }
+    
+    
 }

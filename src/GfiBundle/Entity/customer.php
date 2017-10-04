@@ -39,11 +39,24 @@ class Customer
      * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ContactCustomer", mappedBy="customer")
+     */
+    private $contactCustomer;
     
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->customerCards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -51,8 +64,11 @@ class Customer
     }
 
     /**
-     * @param $name
-     * @return $this
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Customer
      */
     public function setName($name)
     {
@@ -62,18 +78,13 @@ class Customer
     }
 
     /**
+     * Get name
+     *
      * @return string
      */
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->customerCards = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

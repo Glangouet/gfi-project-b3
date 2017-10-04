@@ -36,10 +36,22 @@ class ContactCustomer
     private $firstName;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="dateTime")
+     */
+    private $dateCreation;
+
+    /**
      * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idContact")
      */
-    private $contactCards;
+    private $customerCard;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="contactCustomer")
+     * @ORM\JoinColumn(name="customer", referencedColumnName="id")
+     */
+    private $customer;
 
     /**
      * Get id
@@ -133,5 +145,12 @@ class ContactCustomer
         return $this->contactCards;
     }
 
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->contactCards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+}

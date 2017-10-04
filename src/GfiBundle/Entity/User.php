@@ -28,6 +28,11 @@ class User extends BaseUser
     protected $userCards;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", inversedBy="user")
+     */
+    private $comments;
+
+    /**
      * Add userCard
      *
      * @param \GfiBundle\Entity\CustomerCard $userCard
@@ -49,5 +54,15 @@ class User extends BaseUser
     public function getUserCards()
     {
         return $this->userCards;
+    }
+
+    /**
+     * Remove userCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $userCard
+     */
+    public function removeUserCard(\GfiBundle\Entity\CustomerCard $userCard)
+    {
+        $this->userCards->removeElement($userCard);
     }
 }

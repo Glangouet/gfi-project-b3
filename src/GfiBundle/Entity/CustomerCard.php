@@ -24,9 +24,16 @@ class CustomerCard
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCard", type="datetime")
+     * @ORM\Column(name="dateCreation", type="datetime")
      */
-    private $dateCard;
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="dateModification", type="datetime")
+     */
+    private $dateModification;
 
     /**
      * @var string
@@ -71,43 +78,28 @@ class CustomerCard
     private $rate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="consultantName", type="text")
-     */
-    private $consultantName;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="userCards")
      * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
-    private $idUser;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="customerCards")
-     * @ORM\JoinColumn(name="idCustomer", referencedColumnName="id")
-     */
-    private $idCustomer;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ContactCustomer", inversedBy="contactCards")
+     * @ORM\OneToOne(targetEntity="ContactCustomer", inversedBy="customerCard")
      * @ORM\JoinColumn(name="idContact", referencedColumnName="id")
      */
     private $idContact;
 
     /**
-     * @ORM\OneToOne(targetEntity="Status", inversedBy="statusCards")
-     * @ORM\JoinColumn(name="idStatus", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="StatusHistory", mappedBy="customerCard")
+     * @ORM\JoinColumn(name="status", referencedColumnName="id")
      */
-    private $idStatus;
+    private $status;
 
     /**
-     * @ORM\OneToOne(targetEntity="Comment", inversedBy="commentCards")
-     * @ORM\JoinColumn(name="idComment", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
+     * @ORM\JoinColumn(name="comments", referencedColumnName="id")
      */
-    private $idComment;
-    
+    private $comments;
 
     /**
      * Get id
@@ -285,30 +277,6 @@ class CustomerCard
     public function getRate()
     {
         return $this->rate;
-    }
-
-    /**
-     * Set consultantName
-     *
-     * @param string $consultantName
-     *
-     * @return CustomerCard
-     */
-    public function setConsultantName($consultantName)
-    {
-        $this->consultantName = $consultantName;
-
-        return $this;
-    }
-
-    /**
-     * Get consultantName
-     *
-     * @return string
-     */
-    public function getConsultantName()
-    {
-        return $this->consultantName;
     }
 
     /**

@@ -5,12 +5,12 @@ namespace GfiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Status
+ * StatusHistory
  *
- * @ORM\Table(name="status")
- * @ORM\Entity(repositoryClass="GfiBundle\Repository\StatusRepository")
+ * @ORM\Table(name="statusHistory")
+ * @ORM\Entity(repositoryClass="GfiBundle\Repository\StatusHistoryRepository")
  */
-class Status
+class StatusHistory
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class Status
     /**
      * @var string
      *
-     * @ORM\Column(name="history", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $history;
+    private $name;
 
     /**
      * @var \DateTime
@@ -36,10 +36,9 @@ class Status
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity="CustomerCard", mappedBy="idStatus")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="status")
      */
-    private $statusCards;
-    
+    private $customerCard;
 
     /**
      * Get id
@@ -52,27 +51,27 @@ class Status
     }
 
     /**
-     * Set history
+     * Set statusHistory
      *
-     * @param string $history
+     * @param string $statusHistory
      *
      * @return Status
      */
-    public function setHistory($history)
+    public function setStatusHistory($StatusHistory)
     {
-        $this->history = $history;
+        $this->Statushistory = $statusHistory;
 
         return $this;
     }
 
     /**
-     * Get history
+     * Get statusHistory
      *
      * @return string
      */
-    public function getHistory()
+    public function getStatusHistory()
     {
-        return $this->history;
+        return $this->statusHistory;
     }
 
     /**

@@ -43,10 +43,15 @@ class Comment
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity="CustomerCard", mappedBy="idComment")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="comments")
      */
-    private $commentCards;
+    private $card;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", mappedBy="comments")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * Get id

@@ -28,6 +28,11 @@ class User extends BaseUser
     protected $userCards;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", inversedBy="user")
+     */
+    private $comments;
+
+    /**
      * Add userCard
      *
      * @param \GfiBundle\Entity\CustomerCard $userCard

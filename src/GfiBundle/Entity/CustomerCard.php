@@ -338,11 +338,11 @@ class CustomerCard
     /**
      * Set idCustomer
      *
-     * @param \GfiBundle\Entity\customer $idCustomer
+     * @param \GfiBundle\Entity\Customer $idCustomer
      *
      * @return CustomerCard
      */
-    public function setIdCustomer(\GfiBundle\Entity\customer $idCustomer = null)
+    public function setIdCustomer(\GfiBundle\Entity\Customer $idCustomer = null)
     {
         $this->idCustomer = $idCustomer;
 
@@ -360,13 +360,10 @@ class CustomerCard
     }
 
     /**
-     * Set idContact
-     *
-     * @param \GfiBundle\Entity\contact_customer $idContact
-     *
-     * @return customerCard
+     * @param ContactCustomer|null $idContact
+     * @return $this
      */
-    public function setIdContact(\GfiBundle\Entity\contact_customer $idContact = null)
+    public function setIdContact(\GfiBundle\Entity\ContactCustomer $idContact = null)
     {
         $this->idContact = $idContact;
 
@@ -376,7 +373,7 @@ class CustomerCard
     /**
      * Get idContact
      *
-     * @return \GfiBundle\Entity\contact_customer
+     * @return \GfiBundle\Entity\ContactCustomer
      */
     public function getIdContact()
     {

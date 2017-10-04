@@ -3,3 +3,15 @@ services:
         class: GfiBundle\Service\UserService
         arguments: ["@doctrine.orm.entity_manager"]
 
+    gfi.card:
+        class: GfiBundle\Service\CardService
+        arguments: ["@doctrine.orm.entity_manager", "@=service('security.token_storage').getToken().getUser()"]
+
+    gfi.customer:
+        class: GfiBundle\Service\CustomerService
+        arguments: ["@doctrine.orm.entity_manager", "@=service('security.token_storage').getToken().getUser()"]
+
+
+    gfi.commentaire:
+        class: GfiBundle\Service\CommentaireService
+        arguments: ["@doctrine.orm.entity_manager", "@=service('security.token_storage').getToken().getUser()"]

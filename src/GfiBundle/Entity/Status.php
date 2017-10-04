@@ -24,9 +24,9 @@ class Status
     /**
      * @var string
      *
-     * @ORM\Column(name="history", type="string", length=255)
+     * @ORM\Column(name="statusHistory", type="string", length=255)
      */
-    private $history;
+    private $statusHistory;
 
     /**
      * @var \DateTime
@@ -51,27 +51,27 @@ class Status
     }
 
     /**
-     * Set history
+     * Set statusHistory
      *
-     * @param string $history
+     * @param string $statusHistory
      *
      * @return Status
      */
-    public function setHistory($history)
+    public function setStatusHistory($StatusHistory)
     {
-        $this->history = $history;
+        $this->Statushistory = $statusHistory;
 
         return $this;
     }
 
     /**
-     * Get history
+     * Get statusHistory
      *
      * @return string
      */
-    public function getHistory()
+    public function getStatusHistory()
     {
-        return $this->history;
+        return $this->statusHistory;
     }
 
     /**

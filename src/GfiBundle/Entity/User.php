@@ -55,4 +55,14 @@ class User extends BaseUser
     {
         return $this->userCards;
     }
+
+    /**
+     * Remove userCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $userCard
+     */
+    public function removeUserCard(\GfiBundle\Entity\CustomerCard $userCard)
+    {
+        $this->userCards->removeElement($userCard);
+    }
 }

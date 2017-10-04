@@ -5,12 +5,12 @@ namespace GfiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Status
+ * StatusHistory
  *
- * @ORM\Table(name="status")
- * @ORM\Entity(repositoryClass="GfiBundle\Repository\StatusRepository")
+ * @ORM\Table(name="statusHistory")
+ * @ORM\Entity(repositoryClass="GfiBundle\Repository\StatusHistoryRepository")
  */
-class Status
+class StatusHistory
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class Status
     /**
      * @var string
      *
-     * @ORM\Column(name="statusHistory", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $statusHistory;
+    private $name;
 
     /**
      * @var \DateTime
@@ -36,14 +36,14 @@ class Status
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="idState")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="status")
      */
-    private $states;
+    private $customerCard;
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -97,5 +97,28 @@ class Status
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set statusCards
+     *
+     * @param \GfiBundle\Entity\CustomerCard $statusCards
+     *
+     * @return Status
+     */
+    public function setStatusCards(\GfiBundle\Entity\CustomerCard $statusCards = null)
+    {
+        $this->statusCards = $statusCards;
+
+        return $this;
+    }
+
+    /**
+     * Get statusCards
+     *
+     * @return \GfiBundle\Entity\CustomerCard
+     */
+    public function getStatusCards()
+    {
+        return $this->statusCards;
+    }
+}

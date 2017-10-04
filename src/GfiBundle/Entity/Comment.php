@@ -56,7 +56,7 @@ class Comment
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -134,5 +134,28 @@ class Comment
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set commentCards
+     *
+     * @param \GfiBundle\Entity\CustomerCard $commentCards
+     *
+     * @return Comment
+     */
+    public function setCommentCards(\GfiBundle\Entity\CustomerCard $commentCards = null)
+    {
+        $this->commentCards = $commentCards;
+
+        return $this;
+    }
+
+    /**
+     * Get commentCards
+     *
+     * @return \GfiBundle\Entity\CustomerCard
+     */
+    public function getCommentCards()
+    {
+        return $this->commentCards;
+    }
+}

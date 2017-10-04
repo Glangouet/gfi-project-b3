@@ -5,12 +5,12 @@ namespace GfiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * customer
+ * Customer
  *
  * @ORM\Table(name="customer")
- * @ORM\Entity(repositoryClass="GfiBundle\Repository\customerRepository")
+ * @ORM\Entity(repositoryClass="GfiBundle\Repository\CustomerRepository")
  */
-class customer
+class Customer
 {
     /**
      * @var int
@@ -29,14 +29,14 @@ class customer
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="customer_card", mappedBy="idCustomer")
+     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idCustomer")
      */
     private $customerCards;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creation_date", type="datetime")
+     * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
     
@@ -81,7 +81,7 @@ class customer
      *
      * @param \DateTime $creationDate
      *
-     * @return customer
+     * @return Customer
      */
     public function setCreationDate($creationDate)
     {
@@ -103,11 +103,11 @@ class customer
     /**
      * Add customerCard
      *
-     * @param \GfiBundle\Entity\customer_card $customerCard
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
      *
-     * @return customer
+     * @return Customer
      */
-    public function addCustomerCard(\GfiBundle\Entity\customer_card $customerCard)
+    public function addCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
     {
         $this->customerCards[] = $customerCard;
 
@@ -117,9 +117,9 @@ class customer
     /**
      * Remove customerCard
      *
-     * @param \GfiBundle\Entity\customer_card $customerCard
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
      */
-    public function removeCustomerCard(\GfiBundle\Entity\customer_card $customerCard)
+    public function removeCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
     {
         $this->customerCards->removeElement($customerCard);
     }

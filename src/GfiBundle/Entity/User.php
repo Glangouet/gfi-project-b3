@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="User")
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="GfiBundle\Repository\UserRepository")
  */
 class User extends BaseUser
@@ -23,32 +23,22 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="customer_card", mappedBy="idUser", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idUser")
      */
     protected $userCards;
 
     /**
      * Add userCard
      *
-     * @param \GfiBundle\Entity\customer_card $userCard
+     * @param \GfiBundle\Entity\CustomerCard $userCard
      *
      * @return User
      */
-    public function addUserCard(\GfiBundle\Entity\customer_card $userCard)
+    public function addUserCard(\GfiBundle\Entity\CustomerCard $userCard)
     {
         $this->userCards[] = $userCard;
 
         return $this;
-    }
-
-    /**
-     * Remove userCard
-     *
-     * @param \GfiBundle\Entity\customer_card $userCard
-     */
-    public function removeUserCard(\GfiBundle\Entity\customer_card $userCard)
-    {
-        $this->userCards->removeElement($userCard);
     }
 
     /**

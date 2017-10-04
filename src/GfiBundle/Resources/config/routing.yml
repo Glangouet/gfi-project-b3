@@ -23,7 +23,7 @@ gfi_customer_create:
     defaults: { _controller: GfiBundle:Customer:create }
 
 gfi_customer_edit:
-    path:     /customer/edit
+    path:     /customer/edit/{id}
     defaults: { _controller: GfiBundle:Customer:edit }
 
 gfi_customer_view:

@@ -22,6 +22,18 @@ gfi_customer_create:
     path:     /customer/create
     defaults: { _controller: GfiBundle:Customer:create }
 
+gfi_customer_contact_create:
+    path:     /customer/{id}/contact/create
+    defaults: { _controller: GfiBundle:CustomerContact:create }
+
+gfi_customer_contact_edit:
+    path:     /customer/contact/edit
+    defaults: { _controller: GfiBundle:CustomerContact:edit }
+
+gfi_customer_contact_list:
+    path:     /customer/contact/list
+    defaults: { _controller: GfiBundle:CustomerContact:list }
+
 gfi_customer_edit:
     path:     /customer/edit/{id}
     defaults: { _controller: GfiBundle:Customer:edit }

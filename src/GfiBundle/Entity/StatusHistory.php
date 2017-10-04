@@ -36,9 +36,10 @@ class StatusHistory
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="status")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="statusHistory")
      */
     private $customerCard;
+    
 
     /**
      * Get id

@@ -84,31 +84,34 @@ class CustomerCard
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="ContactCustomer", inversedBy="customerCard")
-     * @ORM\JoinColumn(name="idContact", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="ContactCustomer", cascade={"persist"})
      */
-    private $idContact;
+    private $contactCustomer;
 
     /**
      * @ORM\OneToMany(targetEntity="StatusHistory", mappedBy="customerCard")
-     * @ORM\JoinColumn(name="status", referencedColumnName="id")
+     * @ORM\JoinColumn(name="statusHistory", referencedColumnName="id")
      */
-    private $status;
+    private $statusHistory;
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
      * @ORM\JoinColumn(name="comments", referencedColumnName="id")
      */
     private $comments;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateCreation = new \DateTime();
+        $this->dateModification = new \DateTime();
+        $this->contactCustomer = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->statusHistory = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -336,61 +339,71 @@ class CustomerCard
     }
 
     /**
-     * Set idContact
+     * Add contactCustomer
      *
-     * @param \GfiBundle\Entity\ContactCustomer $idContact
+     * @param \GfiBundle\Entity\ContactCustomer $contactCustomer
      *
      * @return CustomerCard
      */
-    public function setIdContact(\GfiBundle\Entity\ContactCustomer $idContact = null)
+    public function addContactCustomer(\GfiBundle\Entity\ContactCustomer $contactCustomer)
     {
-        $this->idContact = $idContact;
+        $this->contactCustomer[] = $contactCustomer;
 
         return $this;
     }
 
     /**
-     * Get idContact
+     * Remove contactCustomer
      *
-     * @return \GfiBundle\Entity\ContactCustomer
+     * @param \GfiBundle\Entity\ContactCustomer $contactCustomer
      */
-    public function getIdContact()
+    public function removeContactCustomer(\GfiBundle\Entity\ContactCustomer $contactCustomer)
     {
-        return $this->idContact;
+        $this->contactCustomer->removeElement($contactCustomer);
     }
 
     /**
-     * Add status
-     *
-     * @param \GfiBundle\Entity\StatusHistory $status
-     *
-     * @return CustomerCard
-     */
-    public function addStatus(\GfiBundle\Entity\StatusHistory $status)
-    {
-        $this->status[] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Remove status
-     *
-     * @param \GfiBundle\Entity\StatusHistory $status
-     */
-    public function removeStatus(\GfiBundle\Entity\StatusHistory $status)
-    {
-        $this->status->removeElement($status);
-    }
-
-    /**
-     * Get status
+     * Get contactCustomer
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getStatus()
+    public function getContactCustomer()
     {
-        return $this->status;
+        return $this->contactCustomer;
+    }
+
+    /**
+     * Add statusHistory
+     *
+     * @param \GfiBundle\Entity\StatusHistory $statusHistory
+     *
+     * @return CustomerCard
+     */
+    public function addStatusHistory(\GfiBundle\Entity\StatusHistory $statusHistory)
+    {
+        $this->statusHistory[] = $statusHistory;
+
+        return $this;
+    }
+
+    /**
+     * Remove statusHistory
+     *
+     * @param \GfiBundle\Entity\StatusHistory $statusHistory
+     */
+    public function removeStatusHistory(\GfiBundle\Entity\StatusHistory $statusHistory)
+    {
+        $this->statusHistory->removeElement($statusHistory);
+    }
+
+    /**
+     * Get statusHistory
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStatusHistory()
+    {
+        return $this->statusHistory;
     }
 
     /**

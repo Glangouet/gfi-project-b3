@@ -2,7 +2,10 @@
 
 namespace GfiBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +16,28 @@ class CustomerCardType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateCard')->add('contactName')->add('title')->add('fullDescription')->add('keySuccessFactor')->add('durationMonth')->add('nbDayWeek')->add('startAtTheLatest')->add('location')->add('rate')->add('consultantName')->add('statut')->add('idUser')->add('idCustomer')->add('idContact');
+        $builder
+            ->add('keySuccessFactor')
+            ->add('durationMonth')
+            ->add('nbDayWeek')
+            ->add('startAtTheLatest')
+            ->add('location')
+            ->add('rate')
+            ->add('contactCustomer', EntityType::class, array(
+                'class' => 'GfiBundle:ContactCustomer',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                },
+                'choice_label' => 'name',
+                'multiple' => true
+            ))
+            ->add('Ajouter cette fiche', SubmitType::class, array(
+                'attr' => array(
+                    "class" => "btn btn-primary"
+                )
+            ))
+        ;
     }
     
     /**
@@ -22,7 +46,7 @@ class CustomerCardType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'GfiBundle\Entity\customer_card'
+            'data_class' => 'GfiBundle\Entity\CustomerCard'
         ));
     }
 
@@ -31,7 +55,7 @@ class CustomerCardType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'gfibundle_customer_card';
+        return 'gfibundle_customercard';
     }
 
 

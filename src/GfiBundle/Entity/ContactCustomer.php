@@ -2,6 +2,7 @@
 
 namespace GfiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,22 +44,15 @@ class ContactCustomer
     private $dateCreation;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idContact")
-     */
-    private $customerCard;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="contactCustomer")
      * @ORM\JoinColumn(name="customer", referencedColumnName="id")
      */
     private $customer;
-    
-    /**
-     * Constructor
-     */
+
+
     public function __construct()
     {
-        $this->customerCard = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateCreation = new \DateTime();
     }
 
     /**
@@ -141,40 +135,6 @@ class ContactCustomer
     public function getDateCreation()
     {
         return $this->dateCreation;
-    }
-
-    /**
-     * Add customerCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $customerCard
-     *
-     * @return ContactCustomer
-     */
-    public function addCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
-    {
-        $this->customerCard[] = $customerCard;
-
-        return $this;
-    }
-
-    /**
-     * Remove customerCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $customerCard
-     */
-    public function removeCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
-    {
-        $this->customerCard->removeElement($customerCard);
-    }
-
-    /**
-     * Get customerCard
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCustomerCard()
-    {
-        return $this->customerCard;
     }
 
     /**

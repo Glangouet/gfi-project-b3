@@ -32,6 +32,7 @@ class User extends BaseUser
      */
     private $comments;
 
+
     /**
      * Add userCard
      *

@@ -3,17 +3,26 @@
 namespace GfiBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CustomerType extends AbstractType
+class ContactCustomerType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('creationDate');
+        $builder
+            ->add('name')
+            ->add('firstName')
+            ->add('Ajouter', SubmitType::class, array(
+                'attr' => array(
+                    'class' => "btn btn-primary"
+                )
+            ))
+        ;
     }
     
     /**
@@ -22,7 +31,7 @@ class CustomerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'GfiBundle\Entity\customer'
+            'data_class' => 'GfiBundle\Entity\ContactCustomer'
         ));
     }
 
@@ -31,7 +40,7 @@ class CustomerType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'gfibundle_customer';
+        return 'gfibundle_contactcustomer';
     }
 
 

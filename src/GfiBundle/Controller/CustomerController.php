@@ -5,6 +5,7 @@ namespace GfiBundle\Controller;
 use GfiBundle\Entity\Customer;
 use GfiBundle\Form\CustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class CustomerController extends Controller
@@ -26,6 +27,11 @@ class CustomerController extends Controller
     {
         $form = $this->createForm(CustomerType::class, $customer = new Customer());
         $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $serviceCustomer = $this->get('gfi.customer');
+            $response = $serviceCustomer->addCustomer($form, $customer);
+            return new JsonResponse($response);
+        }
         return $this->render('GfiBundle:Gfi/Customer:createCustomer.html.twig', array(
             'form' => $form->createView()
         ));

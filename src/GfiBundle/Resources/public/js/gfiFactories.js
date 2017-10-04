@@ -13,3 +13,10 @@ app.factory('usersService', ["$resource", function ($resource) {
 		cache: true
 	})
 }]);
+
+
+
+
+
+
+

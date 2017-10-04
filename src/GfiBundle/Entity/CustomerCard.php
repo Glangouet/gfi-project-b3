@@ -79,7 +79,7 @@ class CustomerCard
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="userCards")
-     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     private $user;
 
@@ -100,6 +100,14 @@ class CustomerCard
      * @ORM\JoinColumn(name="comments", referencedColumnName="id")
      */
     private $comments;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->status = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -112,27 +120,51 @@ class CustomerCard
     }
 
     /**
-     * Set dateCard
+     * Set dateCreation
      *
-     * @param \DateTime $dateCard
+     * @param \DateTime $dateCreation
      *
      * @return CustomerCard
      */
-    public function setDateCard($dateCard)
+    public function setDateCreation($dateCreation)
     {
-        $this->dateCard = $dateCard;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
 
     /**
-     * Get dateCard
+     * Get dateCreation
      *
      * @return \DateTime
      */
-    public function getDateCard()
+    public function getDateCreation()
     {
-        return $this->dateCard;
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set dateModification
+     *
+     * @param \DateTime $dateModification
+     *
+     * @return CustomerCard
+     */
+    public function setDateModification($dateModification)
+    {
+        $this->dateModification = $dateModification;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModification
+     *
+     * @return \DateTime
+     */
+    public function getDateModification()
+    {
+        return $this->dateModification;
     }
 
     /**
@@ -280,51 +312,27 @@ class CustomerCard
     }
 
     /**
-     * Set idUser
+     * Set user
      *
-     * @param \GfiBundle\Entity\User $idUser
+     * @param \GfiBundle\Entity\User $user
      *
      * @return CustomerCard
      */
-    public function setIdUser(\GfiBundle\Entity\User $idUser = null)
+    public function setUser(\GfiBundle\Entity\User $user = null)
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get idUser
+     * Get user
      *
      * @return \GfiBundle\Entity\User
      */
-    public function getIdUser()
+    public function getUser()
     {
-        return $this->idUser;
-    }
-
-    /**
-     * Set idCustomer
-     *
-     * @param \GfiBundle\Entity\Customer $idCustomer
-     *
-     * @return CustomerCard
-     */
-    public function setIdCustomer(\GfiBundle\Entity\Customer $idCustomer = null)
-    {
-        $this->idCustomer = $idCustomer;
-
-        return $this;
-    }
-
-    /**
-     * Get idCustomer
-     *
-     * @return \GfiBundle\Entity\Customer
-     */
-    public function getIdCustomer()
-    {
-        return $this->idCustomer;
+        return $this->user;
     }
 
     /**
@@ -352,50 +360,70 @@ class CustomerCard
     }
 
     /**
-     * Set idStatus
+     * Add status
      *
-     * @param \GfiBundle\Entity\Status $idStatus
+     * @param \GfiBundle\Entity\StatusHistory $status
      *
      * @return CustomerCard
      */
-    public function setIdStatus(\GfiBundle\Entity\Status $idStatus = null)
+    public function addStatus(\GfiBundle\Entity\StatusHistory $status)
     {
-        $this->idStatus = $idStatus;
+        $this->status[] = $status;
 
         return $this;
     }
 
     /**
-     * Get idStatus
+     * Remove status
      *
-     * @return \GfiBundle\Entity\Status
+     * @param \GfiBundle\Entity\StatusHistory $status
      */
-    public function getIdStatus()
+    public function removeStatus(\GfiBundle\Entity\StatusHistory $status)
     {
-        return $this->idStatus;
+        $this->status->removeElement($status);
     }
 
     /**
-     * Set idComment
+     * Get status
      *
-     * @param \GfiBundle\Entity\Comment $idComment
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \GfiBundle\Entity\Comment $comment
      *
      * @return CustomerCard
      */
-    public function setIdComment(\GfiBundle\Entity\Comment $idComment = null)
+    public function addComment(\GfiBundle\Entity\Comment $comment)
     {
-        $this->idComment = $idComment;
+        $this->comments[] = $comment;
 
         return $this;
     }
 
     /**
-     * Get idComment
+     * Remove comment
      *
-     * @return \GfiBundle\Entity\Comment
+     * @param \GfiBundle\Entity\Comment $comment
      */
-    public function getIdComment()
+    public function removeComment(\GfiBundle\Entity\Comment $comment)
     {
-        return $this->idComment;
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -51,6 +51,7 @@ class Customer
     public function __construct()
     {
         $this->customerCards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contactCustomer = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -143,5 +144,39 @@ class Customer
     public function getCustomerCards()
     {
         return $this->customerCards;
+    }
+
+    /**
+     * Add contactCustomer
+     *
+     * @param \GfiBundle\Entity\ContactCustomer $contactCustomer
+     *
+     * @return Customer
+     */
+    public function addContactCustomer(\GfiBundle\Entity\ContactCustomer $contactCustomer)
+    {
+        $this->contactCustomer[] = $contactCustomer;
+
+        return $this;
+    }
+
+    /**
+     * Remove contactCustomer
+     *
+     * @param \GfiBundle\Entity\ContactCustomer $contactCustomer
+     */
+    public function removeContactCustomer(\GfiBundle\Entity\ContactCustomer $contactCustomer)
+    {
+        $this->contactCustomer->removeElement($contactCustomer);
+    }
+
+    /**
+     * Get contactCustomer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContactCustomer()
+    {
+        return $this->contactCustomer;
     }
 }

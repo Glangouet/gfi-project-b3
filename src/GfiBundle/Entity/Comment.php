@@ -52,6 +52,7 @@ class Comment
      * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
     private $user;
+    
 
     /**
      * Get id
@@ -136,26 +137,50 @@ class Comment
     }
 
     /**
-     * Set commentCards
+     * Set card
      *
-     * @param \GfiBundle\Entity\CustomerCard $commentCards
+     * @param \GfiBundle\Entity\CustomerCard $card
      *
      * @return Comment
      */
-    public function setCommentCards(\GfiBundle\Entity\CustomerCard $commentCards = null)
+    public function setCard(\GfiBundle\Entity\CustomerCard $card = null)
     {
-        $this->commentCards = $commentCards;
+        $this->card = $card;
 
         return $this;
     }
 
     /**
-     * Get commentCards
+     * Get card
      *
      * @return \GfiBundle\Entity\CustomerCard
      */
-    public function getCommentCards()
+    public function getCard()
     {
-        return $this->commentCards;
+        return $this->card;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \GfiBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\GfiBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \GfiBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -23,7 +23,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idUser")
+     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="user")
      */
     protected $userCards;
 
@@ -47,6 +47,16 @@ class User extends BaseUser
     }
 
     /**
+     * Remove userCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $userCard
+     */
+    public function removeUserCard(\GfiBundle\Entity\CustomerCard $userCard)
+    {
+        $this->userCards->removeElement($userCard);
+    }
+
+    /**
      * Get userCards
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -57,12 +67,36 @@ class User extends BaseUser
     }
 
     /**
-     * Remove userCard
+     * Add comment
      *
-     * @param \GfiBundle\Entity\CustomerCard $userCard
+     * @param \GfiBundle\Entity\Comment $comment
+     *
+     * @return User
      */
-    public function removeUserCard(\GfiBundle\Entity\CustomerCard $userCard)
+    public function addComment(\GfiBundle\Entity\Comment $comment)
     {
-        $this->userCards->removeElement($userCard);
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \GfiBundle\Entity\Comment $comment
+     */
+    public function removeComment(\GfiBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

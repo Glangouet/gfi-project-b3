@@ -52,11 +52,19 @@ class ContactCustomer
      * @ORM\JoinColumn(name="customer", referencedColumnName="id")
      */
     private $customer;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->customerCard = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -112,45 +120,84 @@ class ContactCustomer
     }
 
     /**
-     * Add contactCard
+     * Set dateCreation
      *
-     * @param \GfiBundle\Entity\CustomerCard $contactCard
+     * @param \DateTime $dateCreation
      *
      * @return ContactCustomer
      */
-    public function addContactCard(\GfiBundle\Entity\CustomerCard $contactCard)
+    public function setDateCreation($dateCreation)
     {
-        $this->contactCards[] = $contactCard;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
 
     /**
-     * Remove contactCard
+     * Get dateCreation
      *
-     * @param \GfiBundle\Entity\CustomerCard $contactCard
+     * @return \DateTime
      */
-    public function removeContactCard(\GfiBundle\Entity\CustomerCard $contactCard)
+    public function getDateCreation()
     {
-        $this->contactCards->removeElement($contactCard);
+        return $this->dateCreation;
     }
 
     /**
-     * Get contactCards
+     * Add customerCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
+     *
+     * @return ContactCustomer
+     */
+    public function addCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
+    {
+        $this->customerCard[] = $customerCard;
+
+        return $this;
+    }
+
+    /**
+     * Remove customerCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
+     */
+    public function removeCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
+    {
+        $this->customerCard->removeElement($customerCard);
+    }
+
+    /**
+     * Get customerCard
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContactCards()
+    public function getCustomerCard()
     {
-        return $this->contactCards;
+        return $this->customerCard;
     }
 
     /**
-     * Constructor
+     * Set customer
+     *
+     * @param \GfiBundle\Entity\Customer $customer
+     *
+     * @return ContactCustomer
      */
-    public function __construct()
+    public function setCustomer(\GfiBundle\Entity\Customer $customer = null)
     {
-        $this->contactCards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->customer = $customer;
+
+        return $this;
     }
 
+    /**
+     * Get customer
+     *
+     * @return \GfiBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
 }

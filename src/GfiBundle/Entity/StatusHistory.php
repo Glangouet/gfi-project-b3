@@ -51,27 +51,27 @@ class StatusHistory
     }
 
     /**
-     * Set statusHistory
+     * Set name
      *
-     * @param string $statusHistory
+     * @param string $name
      *
-     * @return Status
+     * @return StatusHistory
      */
-    public function setStatusHistory($StatusHistory)
+    public function setName($name)
     {
-        $this->Statushistory = $statusHistory;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get statusHistory
+     * Get name
      *
      * @return string
      */
-    public function getStatusHistory()
+    public function getName()
     {
-        return $this->statusHistory;
+        return $this->name;
     }
 
     /**
@@ -79,7 +79,7 @@ class StatusHistory
      *
      * @param \DateTime $date
      *
-     * @return Status
+     * @return StatusHistory
      */
     public function setDate($date)
     {
@@ -99,26 +99,26 @@ class StatusHistory
     }
 
     /**
-     * Set statusCards
+     * Set customerCard
      *
-     * @param \GfiBundle\Entity\CustomerCard $statusCards
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
      *
-     * @return Status
+     * @return StatusHistory
      */
-    public function setStatusCards(\GfiBundle\Entity\CustomerCard $statusCards = null)
+    public function setCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard = null)
     {
-        $this->statusCards = $statusCards;
+        $this->customerCard = $customerCard;
 
         return $this;
     }
 
     /**
-     * Get statusCards
+     * Get customerCard
      *
      * @return \GfiBundle\Entity\CustomerCard
      */
-    public function getStatusCards()
+    public function getCustomerCard()
     {
-        return $this->statusCards;
+        return $this->customerCard;
     }
 }

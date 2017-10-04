@@ -38,7 +38,7 @@ class ContactCustomer
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="dateTime")
+     * @ORM\Column(name="dateCreation", type="datetime")
      */
     private $dateCreation;
 

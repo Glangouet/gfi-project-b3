@@ -28,7 +28,7 @@ class User extends BaseUser
     protected $userCards;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
     private $comments;
 

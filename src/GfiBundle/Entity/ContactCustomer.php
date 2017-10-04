@@ -36,6 +36,13 @@ class ContactCustomer
     private $firstName;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="dateTime")
+     */
+    private $dateCreation;
+
+    /**
      * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idContact")
      */
     private $contactCards;

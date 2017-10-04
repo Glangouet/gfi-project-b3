@@ -91,19 +91,19 @@ class CustomerCard
     private $idCustomer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ContactCustomer", inversedBy="contactCards")
+     * @ORM\OneToOne(targetEntity="ContactCustomer", inversedBy="contactCards")
      * @ORM\JoinColumn(name="idContact", referencedColumnName="id")
      */
     private $idContact;
 
     /**
-     * @ORM\OneToOne(targetEntity="Status", inversedBy="statusCards")
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="statusCards")
      * @ORM\JoinColumn(name="idStatus", referencedColumnName="id")
      */
     private $idStatus;
 
     /**
-     * @ORM\OneToOne(targetEntity="Comment", inversedBy="commentCards")
+     * @ORM\OneToMany(targetEntity="Comment", inversedBy="Card")
      * @ORM\JoinColumn(name="idComment", referencedColumnName="id")
      */
     private $idComment;

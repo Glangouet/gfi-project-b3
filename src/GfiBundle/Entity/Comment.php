@@ -31,9 +31,9 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="fullDescription", type="text")
+     * @ORM\Column(name="comment", type="text")
      */
-    private $fullDescription;
+    private $comment;
 
     /**
      * @var \DateTime
@@ -83,27 +83,27 @@ class Comment
     }
 
     /**
-     * Set fullDescription
+     * Set comment
      *
-     * @param string $fullDescription
+     * @param string $comment
      *
      * @return Comment
      */
-    public function setFullDescription($fullDescription)
+    public function setComment($comment)
     {
-        $this->fullDescription = $fullDescription;
+        $this->comment = $comment;
 
         return $this;
     }
 
     /**
-     * Get fullDescription
+     * Get comment
      *
      * @return string
      */
-    public function getFullDescription()
+    public function getComment()
     {
-        return $this->fullDescription;
+        return $this->comment;
     }
 
     /**

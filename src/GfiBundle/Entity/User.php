@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="User")
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="GfiBundle\Repository\UserRepository")
  */
 class User extends BaseUser

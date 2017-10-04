@@ -2,8 +2,8 @@
 
 namespace GfiBundle\Controller;
 
-use GfiBundle\Entity\customer_card;
-use GfiBundle\Form\customer_cardType;
+use GfiBundle\Entity\CustomerCard;
+use GfiBundle\Form\CustomerCardType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ class CardController extends Controller
      */
     public function createCardAction(Request $request)
     {
-        $form = $this->createForm(customer_cardType::class, $card = new customer_card());
+        $form = $this->createForm(CustomerCardType::class, $card = new CustomerCard());
         $form->handleRequest($request);
         return $this->render('GfiBundle:Gfi/Card:createCard.html.twig', array(
             'form' => $form->createView()

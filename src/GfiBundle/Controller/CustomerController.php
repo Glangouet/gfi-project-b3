@@ -2,8 +2,8 @@
 
 namespace GfiBundle\Controller;
 
-use GfiBundle\Entity\customer;
-use GfiBundle\Form\customerType;
+use GfiBundle\Entity\Customer;
+use GfiBundle\Form\CustomerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ class CustomerController extends Controller
      */
     public function createAction(Request $request)
     {
-        $form = $this->createForm(customerType::class, $customer = new customer());
+        $form = $this->createForm(CustomerType::class, $customer = new Customer());
         $form->handleRequest($request);
         return $this->render('GfiBundle:Gfi/Customer:createCustomer.html.twig', array(
             'form' => $form->createView()

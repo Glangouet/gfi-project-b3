@@ -5,12 +5,12 @@ namespace GfiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * customer_card
+ * CustomerCard
  *
  * @ORM\Table(name="customer_card")
- * @ORM\Entity(repositoryClass="GfiBundle\Repository\customer_cardRepository")
+ * @ORM\Entity(repositoryClass="GfiBundle\Repository\CustomerCardRepository")
  */
-class customer_card
+class CustomerCard
 {
     /**
      * @var int
@@ -24,56 +24,35 @@ class customer_card
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_card", type="datetime")
+     * @ORM\Column(name="dateCard", type="datetime")
      */
     private $dateCard;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contact_name", type="string", length=255)
-     */
-    private $contactName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="full_description", type="text")
-     */
-    private $fullDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="key_success_factor", type="string", length=255)
+     * @ORM\Column(name="keySuccessFactor", type="string", length=255)
      */
     private $keySuccessFactor;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="duration_month", type="integer")
+     * @ORM\Column(name="durationMonth", type="integer")
      */
     private $durationMonth;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nb_day_week", type="integer")
+     * @ORM\Column(name="nbDayWeek", type="integer")
      */
     private $nbDayWeek;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_at_the_latest", type="datetime")
+     * @ORM\Column(name="startAtTheLatest", type="datetime")
      */
     private $startAtTheLatest;
 
@@ -94,35 +73,40 @@ class customer_card
     /**
      * @var string
      *
-     * @ORM\Column(name="consultant_name", type="text")
+     * @ORM\Column(name="consultantName", type="text")
      */
     private $consultantName;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="statut", type="string", length=255)
-     */
-    private $statut;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="userCards")
-     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
     private $idUser;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="customer", inversedBy="customerCards")
-     * @ORM\JoinColumn(name="id_customer", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="customerCards")
+     * @ORM\JoinColumn(name="idCustomer", referencedColumnName="id")
      */
     private $idCustomer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="contact_customer", inversedBy="contactCards")
-     * @ORM\JoinColumn(name="id_contact", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ContactCustomer", inversedBy="contactCards")
+     * @ORM\JoinColumn(name="idContact", referencedColumnName="id")
      */
     private $idContact;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Status", inversedBy="statusCards")
+     * @ORM\JoinColumn(name="idStatus", referencedColumnName="id")
+     */
+    private $idStatus;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Comment", inversedBy="commentCards")
+     * @ORM\JoinColumn(name="idComment", referencedColumnName="id")
+     */
+    private $idComment;
 
 
     /**
@@ -140,7 +124,7 @@ class customer_card
      *
      * @param \DateTime $dateCard
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setDateCard($dateCard)
     {
@@ -160,83 +144,11 @@ class customer_card
     }
 
     /**
-     * Set contactName
-     *
-     * @param string $contactName
-     *
-     * @return customer_card
-     */
-    public function setContactName($contactName)
-    {
-        $this->contactName = $contactName;
-
-        return $this;
-    }
-
-    /**
-     * Get contactName
-     *
-     * @return string
-     */
-    public function getContactName()
-    {
-        return $this->contactName;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return customer_card
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Set fullDescription
-     *
-     * @param string $fullDescription
-     *
-     * @return customer_card
-     */
-    public function setFullDescription($fullDescription)
-    {
-        $this->fullDescription = $fullDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get fullDescription
-     *
-     * @return string
-     */
-    public function getFullDescription()
-    {
-        return $this->fullDescription;
-    }
-
-    /**
      * Set keySuccessFactor
      *
      * @param string $keySuccessFactor
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setKeySuccessFactor($keySuccessFactor)
     {
@@ -260,7 +172,7 @@ class customer_card
      *
      * @param integer $durationMonth
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setDurationMonth($durationMonth)
     {
@@ -284,7 +196,7 @@ class customer_card
      *
      * @param integer $nbDayWeek
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setNbDayWeek($nbDayWeek)
     {
@@ -308,7 +220,7 @@ class customer_card
      *
      * @param \DateTime $startAtTheLatest
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setStartAtTheLatest($startAtTheLatest)
     {
@@ -332,7 +244,7 @@ class customer_card
      *
      * @param string $location
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setLocation($location)
     {
@@ -356,7 +268,7 @@ class customer_card
      *
      * @param float $rate
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setRate($rate)
     {
@@ -380,7 +292,7 @@ class customer_card
      *
      * @param string $consultantName
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setConsultantName($consultantName)
     {
@@ -400,35 +312,11 @@ class customer_card
     }
 
     /**
-     * Set statut
-     *
-     * @param string $statut
-     *
-     * @return customer_card
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return string
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Set idUser
      *
      * @param \GfiBundle\Entity\User $idUser
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setIdUser(\GfiBundle\Entity\User $idUser = null)
     {
@@ -452,7 +340,7 @@ class customer_card
      *
      * @param \GfiBundle\Entity\customer $idCustomer
      *
-     * @return customer_card
+     * @return CustomerCard
      */
     public function setIdCustomer(\GfiBundle\Entity\customer $idCustomer = null)
     {
@@ -476,7 +364,7 @@ class customer_card
      *
      * @param \GfiBundle\Entity\contact_customer $idContact
      *
-     * @return customer_card
+     * @return customerCard
      */
     public function setIdContact(\GfiBundle\Entity\contact_customer $idContact = null)
     {

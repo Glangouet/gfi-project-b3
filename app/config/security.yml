@@ -27,3 +27,9 @@ security:
         - { path: ^/register, role: ROLE_ADMIN }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/, role: [ROLE_ADMIN, ROLE_COMMERCIAL] }
+        - { path: ^/create, role: [ROLE_ADMIN, ROLE_COMMERCIAL] }
+        - { path: ^/edit, role: [ROLE_ADMIN, ROLE_COMMERCIAL] }
+        - { path: ^/view/, role: [ROLE_ADMIN, ROLE_COMMERCIAL] }
+        - { path: ^/customer, role: [ROLE_ADMIN, ROLE_COMMERCIAL] }
+        - { path: ^/customer/, role: [ROLE_ADMIN, ROLE_COMMERCIAL] }

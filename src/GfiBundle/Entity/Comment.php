@@ -48,7 +48,7 @@ class Comment
     private $card;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="comment")
+     * @ORM\ManyToOne(targetEntity="User", mappedBy="comments")
      * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
     private $user;

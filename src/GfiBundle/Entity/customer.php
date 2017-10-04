@@ -41,7 +41,7 @@ class Customer
     private $creationDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="ContactCustomer", mappedBy="contacts")
+     * @ORM\OneToMany(targetEntity="ContactCustomer", mappedBy="customer")
      */
     private $contactCustomer;
     

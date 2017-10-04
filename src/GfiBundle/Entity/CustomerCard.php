@@ -84,7 +84,7 @@ class CustomerCard
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="ContactCustomer", inversedBy="contactCards")
+     * @ORM\OneToOne(targetEntity="ContactCustomer", inversedBy="customerCard")
      * @ORM\JoinColumn(name="idContact", referencedColumnName="id")
      */
     private $idContact;

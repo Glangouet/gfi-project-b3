@@ -45,13 +45,13 @@ class ContactCustomer
     /**
      * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idContact")
      */
-    private $contactCards;
+    private $customerCard;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="customer")
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="contactCustomer")
      * @ORM\JoinColumn(name="customer", referencedColumnName="id")
      */
-    private $contacts;
+    private $customer;
 
     /**
      * Get id

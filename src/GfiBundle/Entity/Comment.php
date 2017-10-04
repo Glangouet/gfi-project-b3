@@ -43,7 +43,7 @@ class Comment
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CustomerCard", mappedBy="idComment")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="card")
      */
     private $card;
 

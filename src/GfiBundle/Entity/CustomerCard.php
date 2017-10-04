@@ -103,7 +103,7 @@ class CustomerCard
     private $idStatus;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", inversedBy="card")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idComment")
      * @ORM\JoinColumn(name="idComment", referencedColumnName="id")
      */
     private $idComment;

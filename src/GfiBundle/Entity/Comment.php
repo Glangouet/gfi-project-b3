@@ -43,9 +43,9 @@ class Comment
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity="CustomerCard", mappedBy="idComment")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", mappedBy="idComment")
      */
-    private $commentCards;
+    private $Card;
 
 
     /**

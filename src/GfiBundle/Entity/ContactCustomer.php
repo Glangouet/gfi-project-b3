@@ -40,6 +40,11 @@ class ContactCustomer
      */
     private $contactCards;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="customer")
+     * @ORM\JoinColumn(name="customer", referencedColumnName="id")
+     */
+    private $contacts;
 
     /**
      * Get id

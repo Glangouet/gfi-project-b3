@@ -24,9 +24,16 @@ class CustomerCard
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCard", type="datetime")
+     * @ORM\Column(name="dateCreation", type="datetime")
      */
-    private $dateCard;
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="dateModification", type="datetime")
+     */
+    private $dateModification;
 
     /**
      * @var string
@@ -74,14 +81,7 @@ class CustomerCard
      * @ORM\ManyToOne(targetEntity="User", inversedBy="userCards")
      * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
-    private $idUser;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="customerCards")
-     * @ORM\JoinColumn(name="idCustomer", referencedColumnName="id")
-     */
-    private $idCustomer;
+    private $user;
 
     /**
      * @ORM\OneToOne(targetEntity="ContactCustomer", inversedBy="contactCards")
@@ -90,16 +90,16 @@ class CustomerCard
     private $idContact;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Status", inversedBy="statusCards")
-     * @ORM\JoinColumn(name="idStatus", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Status", mappedBy="states")
+     * @ORM\JoinColumn(name="idState", referencedColumnName="id")
      */
-    private $idStatus;
+    private $idState;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idComment")
-     * @ORM\JoinColumn(name="idComment", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
+     * @ORM\JoinColumn(name="comments", referencedColumnName="id")
      */
-    private $idComment;
+    private $Comments;
 
 
     /**

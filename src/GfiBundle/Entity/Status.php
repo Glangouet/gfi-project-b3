@@ -36,9 +36,9 @@ class Status
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idStatus")
+     * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="idState")
      */
-    private $statusCards;
+    private $states;
 
     /**
      * Get id

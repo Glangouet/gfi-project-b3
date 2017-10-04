@@ -45,7 +45,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="CustomerCard", mappedBy="idComment")
      */
-    private $Card;
+    private $card;
 
 
     /**

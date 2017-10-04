@@ -107,7 +107,7 @@ class CustomerCard
      * @ORM\JoinColumn(name="idComment", referencedColumnName="id")
      */
     private $idComment;
-
+    
 
     /**
      * Get id
@@ -352,7 +352,7 @@ class CustomerCard
     /**
      * Get idCustomer
      *
-     * @return \GfiBundle\Entity\customer
+     * @return \GfiBundle\Entity\Customer
      */
     public function getIdCustomer()
     {
@@ -360,8 +360,11 @@ class CustomerCard
     }
 
     /**
-     * @param ContactCustomer|null $idContact
-     * @return $this
+     * Set idContact
+     *
+     * @param \GfiBundle\Entity\ContactCustomer $idContact
+     *
+     * @return CustomerCard
      */
     public function setIdContact(\GfiBundle\Entity\ContactCustomer $idContact = null)
     {
@@ -378,5 +381,53 @@ class CustomerCard
     public function getIdContact()
     {
         return $this->idContact;
+    }
+
+    /**
+     * Set idStatus
+     *
+     * @param \GfiBundle\Entity\Status $idStatus
+     *
+     * @return CustomerCard
+     */
+    public function setIdStatus(\GfiBundle\Entity\Status $idStatus = null)
+    {
+        $this->idStatus = $idStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get idStatus
+     *
+     * @return \GfiBundle\Entity\Status
+     */
+    public function getIdStatus()
+    {
+        return $this->idStatus;
+    }
+
+    /**
+     * Set idComment
+     *
+     * @param \GfiBundle\Entity\Comment $idComment
+     *
+     * @return CustomerCard
+     */
+    public function setIdComment(\GfiBundle\Entity\Comment $idComment = null)
+    {
+        $this->idComment = $idComment;
+
+        return $this;
+    }
+
+    /**
+     * Get idComment
+     *
+     * @return \GfiBundle\Entity\Comment
+     */
+    public function getIdComment()
+    {
+        return $this->idComment;
     }
 }

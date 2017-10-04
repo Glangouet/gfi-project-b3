@@ -133,5 +133,12 @@ class ContactCustomer
         return $this->contactCards;
     }
 
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->contactCards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+}

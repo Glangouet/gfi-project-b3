@@ -39,11 +39,12 @@ class Status
      * @ORM\OneToOne(targetEntity="CustomerCard", mappedBy="idStatus")
      */
     private $statusCards;
+    
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -97,5 +98,28 @@ class Status
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set statusCards
+     *
+     * @param \GfiBundle\Entity\CustomerCard $statusCards
+     *
+     * @return Status
+     */
+    public function setStatusCards(\GfiBundle\Entity\CustomerCard $statusCards = null)
+    {
+        $this->statusCards = $statusCards;
+
+        return $this;
+    }
+
+    /**
+     * Get statusCards
+     *
+     * @return \GfiBundle\Entity\CustomerCard
+     */
+    public function getStatusCards()
+    {
+        return $this->statusCards;
+    }
+}

@@ -1,19 +1,39 @@
-gfi_listCard:
+gfi_card_list:
     path:     /
-    defaults: { _controller: GfiBundle:Gfi:listCard }
+    defaults: { _controller: GfiBundle:Card:list }
 
-gfi_createCard:
-    path:     /createCard
-    defaults: { _controller: GfiBundle:Gfi:createCard }
+gfi_card_create:
+    path:     /create
+    defaults: { _controller: GfiBundle:Card:create }
 
-gfi_createCustomer:
-    path:     /createCustomer
-    defaults: { _controller: GfiBundle:Gfi:createCustomer }
+gfi_card_edit:
+    path:     /edit
+    defaults: { _controller: GfiBundle:Card:edit }
+
+gfi_card_view:
+    path:     /view/{id}
+    defaults: { _controller: GfiBundle:Card:view }
+
+gfi_customer_list:
+    path:     /customer
+    defaults: { _controller: GfiBundle:Customer:list }
+
+gfi_customer_create:
+    path:     /customer/create
+    defaults: { _controller: GfiBundle:Customer:create }
+
+gfi_customer_edit:
+    path:     /customer/edit
+    defaults: { _controller: GfiBundle:Customer:edit }
+
+gfi_customer_view:
+    path:     /customer/view/{id}
+    defaults: { _controller: Gfibundle:Customer:view }
 
 gfi_admin_addUser:
     path:     /admin/addUser
     defaults: { _controller: GfiBundle:Admin:addUser }
 
-gfi_admin_users:
-    path:     /admin/users
-    defaults: { _controller: GfiBundle:Admin:users }
+gfi_admin_userList:
+    path:     /admin/userList
+    defaults: { _controller: GfiBundle:Admin:userList }

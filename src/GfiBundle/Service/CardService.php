@@ -1,11 +1,11 @@
-<?php
+<?php 
 
 namespace GfiBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use GfiBundle\Entity\User;
 
-class CommentService
+class CardService 
 {
     /**
      * @var EntityManager

@@ -34,15 +34,16 @@ class CardController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction()
+    public function editAction($id)
     {
+        
         return $this->render('GfiBundle:Gfi/Card:editCard.html.twig');
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction()
+    public function viewAction($id)
     {
         return $this->render('GfiBundle:Gfi/Card:viewCard.html.twig');
     }

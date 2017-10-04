@@ -32,9 +32,10 @@ class CustomerController extends Controller
     }
 
     /**
+     * @param $id
      * @param Request $request
      */
-    public function editAction(Request $request)
+    public function editAction($id, Request $request)
     {
         
     }

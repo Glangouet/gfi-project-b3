@@ -5,12 +5,12 @@ namespace GfiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * contact_customer
+ * ContactCustomer
  *
- * @ORM\Table(name="contact_customer")
- * @ORM\Entity(repositoryClass="GfiBundle\Repository\contact_customerRepository")
+ * @ORM\Table(name="ContactCustomer")
+ * @ORM\Entity(repositoryClass="GfiBundle\Repository\ContactCustomerRepository")
  */
-class contact_customer
+class ContactCustomer
 {
     /**
      * @var int
@@ -31,12 +31,12 @@ class contact_customer
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
-     * @ORM\OneToMany(targetEntity="customer_card", mappedBy="idContact")
+     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idContact")
      */
     private $contactCards;
 
@@ -56,7 +56,7 @@ class contact_customer
      *
      * @param string $name
      *
-     * @return contact_customer
+     * @return ContactCustomer
      */
     public function setName($name)
     {
@@ -80,7 +80,7 @@ class contact_customer
      *
      * @param string $firstName
      *
-     * @return contact_customer
+     * @return ContactCustomer
      */
     public function setFirstName($firstName)
     {
@@ -98,5 +98,40 @@ class contact_customer
     {
         return $this->firstName;
     }
+
+    /**
+     * Add contactCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $contactCard
+     *
+     * @return ContactCustomer
+     */
+    public function addContactCard(\GfiBundle\Entity\CustomerCard $contactCard)
+    {
+        $this->contactCards[] = $contactCard;
+
+        return $this;
+    }
+
+    /**
+     * Remove contactCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $contactCard
+     */
+    public function removeContactCard(\GfiBundle\Entity\CustomerCard $contactCard)
+    {
+        $this->contactCards->removeElement($contactCard);
+    }
+
+    /**
+     * Get contactCards
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContactCards()
+    {
+        return $this->contactCards;
+    }
+
 }
 

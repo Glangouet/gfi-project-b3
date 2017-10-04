@@ -39,6 +39,11 @@ class Customer
      * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ContactCustomer", mappedBy="customer")
+     */
+    private $contactCustomer;
     
     /**
      * Constructor

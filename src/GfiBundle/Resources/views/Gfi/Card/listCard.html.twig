@@ -13,13 +13,11 @@
         <th>Delete</th>
         <th>View</th>
         </thead>
-
         {% for card in list %}
-        <tbody ng-repeat="client in listeClients track by $index">
-        <tr ng-class="{'peer': $index %2 == 0}">
-
-            <td style="text-align:center" align="center" class="col-sm-1">
-                <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse"
+        <tbody>
+        <tr>
+            <td style="text-align:center" align="center">
+                <a data-target="#_detailClient-{{card.card_id}}" role="button" data-toggle="collapse"
                    class="table-link accordian-toggle collapsed" aria-expanded="false">
                     <span class="glyphicon glyphicon-th-list" style="color:black"></span>
                 </a>
@@ -55,32 +53,57 @@
         </tr>
         </tbody>
         <tbody>
-        <tr ng-repeat-end class="no-background no-hover">
+        <tr class="no-background no-hover">
             <td></td>
-            <td>
-                <div class="collapse" id="_detailClient-{[{$index}]}">
-                    <div class="row">
-                        <span class="pull-lef">Created: {[{client.dateCreation}]}</span>
-                        <span class="pull-righ">Updated: {[{client.dateModification}]}</span>
+            <td colspan="8">
+                <div class="collapse" id="_detailClient-{{card.card_id}}">
+                    
+                    <div class="form-group">
+                    <label class="control-label" for="card.date_creation">Created</label>
+                        <input readonly class="form-control" id="card.date_creation" value="{{card.date_creation}}" />
                     </div>
-                    <div class="row">{[{client.name}]}</div>
-                    <div class="row">{[{client.contactName}]}</div>
-                    <div class="row">{[{client.title}]}</div>
-                    <div class="row">{[{client.fullDescription}]}</div>
-                    <div class="row">{[{client.mainKeys}]}</div>
-                    <div class="row">
-                        <span class="pull-lef">Duration: {[{client.duration}]}</span>
-                        <span class="pull-righ">({[{client.daysWeek}]})</span>
+
+                    <div class="form-group">
+                    <label class="control-label" for="date_modification">Updated</label>
+                        <input readonly class="form-control" id="date_modification" value="{{card.date_modification}}" />
                     </div>
-                    <div class="row">{[{client.startLatest}]}</div>
-                    <div class="row">{[{client.location}]}</div>
-                    <div class="row">{[{client.Rate}]}</div>
-                    <div class="row">{[{client.description}]}</div>
-                    <div class="row">{[{client.consultant}]}</div>
-                    <div class="row">{[{client.commentaire}]}</div>
-                    <div class="row">{[{client.dateCreation}]}</div>
-                    <div class="row">{[{client.dateCreation}]}</div>
-                    <div class="row">{[{client.dateCreation}]}</div>
+
+                    <div class="form-group">
+                    <label class="control-label" for="key_success_factor">Key success factor</label>
+                        <input readonly class="form-control" id="key_success_factor" value="{{card.key_success_factor}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="duration_month">Duration</label>
+                        <input readonly class="form-control" id="duration_month" value="{{card.duration_month}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="nb_day_by_week">Days / Week</label>
+                        <input readonly class="form-control" id="nb_day_by_week" value="{{card.nb_day_by_week}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="date_start_at_the_latest">Start at the latest</label>
+                        <input readonly class="form-control" id="date_start_at_the_latest" value="{{card.date_start_at_the_latest}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="location">Location</label>
+                        <input readonly class="form-control" id="location" value="{{card.location}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="rate">Rate</label>
+                        <input readonly class="form-control" id="rate" value="{{card.rate}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="title">Title</label>
+                        <input readonly class="form-control" id="title" value="{{card.title}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                        <input readonly class="form-control" id="description" value="{{card.description}}" />
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label" for="customer_contact">Contact</label>
+                        <input readonly class="form-control" id="customer_contact" value="{{card.customer_contact.0.name}}" />
+                    </div>
                 </div>
             </td>
         </tr>

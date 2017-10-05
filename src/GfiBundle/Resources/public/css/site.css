@@ -22,4 +22,6 @@
 .logoLogGfi{
     width:90vw;
     height:45vh;
+    max-width: 600px;
+    max-height: 200px;
 }

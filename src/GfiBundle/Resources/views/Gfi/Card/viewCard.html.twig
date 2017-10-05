@@ -1,18 +1,98 @@
 {% extends "GfiBundle:Gfi:layout.html.twig" %}
 
 {% block content %}
-    {{ dump(card) }}
+
+    <a href="{{ path('gfi_card_edit', {'card': card.id })}}" class="btn btn-primary pull-right">Edit this card</a>
+
+    <h1>Card n°{{ card.id }}</h1>
+    <hr>
+
+    <div>
+        <div class="form-group">
+            <label class="control-label" for="card.date_creation">Historique des états</label>
+            {% for status in card.statusHistory %}
+                <input readonly class="form-control" value="{{ status.date|date('d M Y') }} - {{ status.name }} "/>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="card.date_creation">Commerciaux ayant accès à cette fiche</label>
+            {% for user in card.users %}
+                <input readonly class="form-control" value="{{ user.name }} {{ user.firstName }} - {{ user.email }}"/>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="card.date_creation">Contacts client</label>
+            {% for contact in card.contactsCustomer %}
+                <input readonly class="form-control" value="{{ contact.customer.name }} - {{ contact.name }} {{ contact.firstName }} - {{ contact.email }} - {{ contact.phone }}"/>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="card.date_creation">Created</label>
+            <input readonly class="form-control" id="card.date_creation" value="{{ card.dateCreation|date('d M Y') }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="date_modification">Updated</label>
+            <input readonly class="form-control" id="date_modification"
+                   value="{{ card.dateModification|date('d M Y') }}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="key_success_factor">Key success factor</label>
+            <input readonly class="form-control" id="key_success_factor" value="{{ card.keySuccessFactor }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="duration_month">Duration</label>
+            <input readonly class="form-control" id="duration_month" value="{{ card.durationMonth }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="nb_day_by_week">Days / Week</label>
+            <input readonly class="form-control" id="nb_day_by_week" value="{{ card.nbDayWeek }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="date_start_at_the_latest">Start at the latest</label>
+            <input readonly class="form-control" id="date_start_at_the_latest"
+                   value="{{ card.startAtTheLatest|date('d M Y') }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="location">Location</label>
+            <input readonly class="form-control" id="location" value="{{ card.location }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="rate">Rate</label>
+            <input readonly class="form-control" id="rate" value="{{ card.rate }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="title">Title</label>
+            <input readonly class="form-control" id="title" value="{{ card.title }}"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="description">Description</label>
+            <input readonly class="form-control" id="description" value="{{ card.fullDescription }}"/>
+        </div>
+    </div>
 
     <br>
-
+    <hr>
+    <h4>Ajouter un commentaire à cette fiche</h4>
+    <hr>
     {{ form(form) }}
 
-
-    <br>
+    <hr>
+    <h4>{{ coms|length }} Commentaires</h4>
+    <hr>
 
 
     {% for com in coms %}
-        {{ dump(com) }}
+        <div class="commentaire">
+            <div class="form-group">
+                <label class="control-label" for="description">{{ com.user_email }} - {{ com.title }} - {{ com.date|date('d M Y') }} </label>
+                <textarea readonly class="form-control" id="description">{{ com.comment }}</textarea>
+            </div>
+        </div>
     {% endfor %}
 
 {% endblock %}

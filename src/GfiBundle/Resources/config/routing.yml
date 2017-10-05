@@ -55,7 +55,7 @@ gfi_admin_addUser:
 
 gfi_admin_userList:
     path:     /admin/userList
-    defaults: { _controller: GfiBundle:Admin:userList }
+    defaults: { _controller: GfiBundle:Admin:users }
 
 
 

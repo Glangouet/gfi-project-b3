@@ -39,7 +39,17 @@ class AdminController extends Controller
             if ($form->isValid()) {
                 $em->persist($user);
                 $em->flush();
-                return new JsonResponse(true);
+                $response = array(
+                    'success' => true,
+                    'message' => "This user has been created"
+                );
+                return new JsonResponse($response);
+            } else {
+                $response = array(
+                    'success' => false,
+                    'message' => "Une erreur est survenue"
+                );
+                return $response;
             }
         }
         return $this->render('GfiBundle:Gfi/admin:addUser.html.twig', array(

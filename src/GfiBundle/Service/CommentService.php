@@ -38,11 +38,13 @@ class CommentService
     public function returnComment(Comment $comment)
     {
         return array(
-            'userId' => $comment->getUser()->getId(),
-            'userName' => $comment->getUser()->getUsername(),
-            'idComment' => $comment->getId(),
+            'user_id' => $comment->getUser()->getId(),
+            'user_name' => $comment->getUser()->getUsername(),
+            'user_email' => $comment->getUser()->getEmail(),
+            'id_comment' => $comment->getId(),
             'title' => $comment->getTitle(),
-            'comment' => $comment->getComment()
+            'comment' => $comment->getComment(),
+            'date' => $comment->getDate()->format('d M Y')
         );
     }
 

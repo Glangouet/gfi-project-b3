@@ -19,7 +19,7 @@
         </thead>
 
         {% for customer in list %}
-            <tbody ng-repeat="client in listeClients track by $index">
+            <tbody ng-repeat="client in listeClients track by $index" class="item-{{ customer.customer_id }}">
             <tr ng-class="{'peer': $index %2 == 0}">
                 <td style="text-align:center" align="center" class="col-sm-1">
                     <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse"
@@ -40,7 +40,7 @@
                     <a href="{{ path('gfi_customer_contact_list', { 'id': customer.customer_id }) }}" class="btn btn-primary">View contacts</a>
                 </td>
                 <td>
-                    <a href="{{ path('gfi_api_customer_remove', { 'id': customer.customer_id }) }}" class="btn btn-danger">Delete</a>
+                    <a data-url="{{ path('gfi_api_customer_remove', { 'id': customer.customer_id }) }}" data-id="{{ customer.customer_id }}" class="btn btn-danger deleteItem">Delete</a>
                 </td>
                 <td>
                     <a href="{{ path('gfi_customer_edit', {'id': customer.customer_id }) }}" class="btn btn-warning">Edit</a>

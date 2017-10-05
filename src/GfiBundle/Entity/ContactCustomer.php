@@ -24,10 +24,21 @@ class ContactCustomer
 
     /**
      * @var string
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    private $phone;
 
     /**
      * @var string
@@ -56,7 +67,38 @@ class ContactCustomer
     {
         $this->dateCreation = new \DateTime();
     }
-    
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
 
     /**
      * Get id

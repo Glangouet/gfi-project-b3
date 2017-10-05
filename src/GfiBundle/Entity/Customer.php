@@ -29,11 +29,6 @@ class Customer
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idCustomer")
-     */
-    private $customerCards;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime")
@@ -50,7 +45,7 @@ class Customer
      */
     public function __construct()
     {
-        $this->customerCards = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->creationDate = new \DateTime();
         $this->contactCustomer = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -110,40 +105,6 @@ class Customer
     public function getCreationDate()
     {
         return $this->creationDate;
-    }
-
-    /**
-     * Add customerCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $customerCard
-     *
-     * @return Customer
-     */
-    public function addCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
-    {
-        $this->customerCards[] = $customerCard;
-
-        return $this;
-    }
-
-    /**
-     * Remove customerCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $customerCard
-     */
-    public function removeCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
-    {
-        $this->customerCards->removeElement($customerCard);
-    }
-
-    /**
-     * Get customerCards
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCustomerCards()
-    {
-        return $this->customerCards;
     }
 
     /**

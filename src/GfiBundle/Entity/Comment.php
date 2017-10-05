@@ -52,7 +52,7 @@ class Comment
      * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      */
     private $user;
-    
+
 
     /**
      * Get id

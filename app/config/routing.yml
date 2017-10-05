@@ -1,5 +1,5 @@
 gfi:
-    resource: "@GfiBundle/Resources/Config/routing.yml"
+    resource: "@GfiBundle/Resources/config/routing.yml"
     prefix:   /
 
 fos_user_security:

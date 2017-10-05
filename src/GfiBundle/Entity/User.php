@@ -23,48 +23,10 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="user")
-     */
-    protected $userCards;
-
-    /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
     private $comments;
-
-    /**
-     * Add userCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $userCard
-     *
-     * @return User
-     */
-    public function addUserCard(\GfiBundle\Entity\CustomerCard $userCard)
-    {
-        $this->userCards[] = $userCard;
-
-        return $this;
-    }
-
-    /**
-     * Remove userCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $userCard
-     */
-    public function removeUserCard(\GfiBundle\Entity\CustomerCard $userCard)
-    {
-        $this->userCards->removeElement($userCard);
-    }
-
-    /**
-     * Get userCards
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUserCards()
-    {
-        return $this->userCards;
-    }
+    
 
     /**
      * Add comment

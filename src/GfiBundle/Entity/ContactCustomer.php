@@ -2,6 +2,7 @@
 
 namespace GfiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,7 @@ class ContactCustomer
 
     /**
      * @var string
-     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -43,23 +44,19 @@ class ContactCustomer
     private $dateCreation;
 
     /**
-     * @ORM\OneToMany(targetEntity="CustomerCard", mappedBy="idContact")
-     */
-    private $customerCard;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="contactCustomer")
      * @ORM\JoinColumn(name="customer", referencedColumnName="id")
      */
     private $customer;
-    
+
     /**
-     * Constructor
+     * ContactCustomer constructor.
      */
     public function __construct()
     {
-        $this->customerCard = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dateCreation = new \DateTime();
     }
+    
 
     /**
      * Get id
@@ -144,40 +141,6 @@ class ContactCustomer
     }
 
     /**
-     * Add customerCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $customerCard
-     *
-     * @return ContactCustomer
-     */
-    public function addCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
-    {
-        $this->customerCard[] = $customerCard;
-
-        return $this;
-    }
-
-    /**
-     * Remove customerCard
-     *
-     * @param \GfiBundle\Entity\CustomerCard $customerCard
-     */
-    public function removeCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard)
-    {
-        $this->customerCard->removeElement($customerCard);
-    }
-
-    /**
-     * Get customerCard
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCustomerCard()
-    {
-        return $this->customerCard;
-    }
-
-    /**
      * Set customer
      *
      * @param \GfiBundle\Entity\Customer $customer
@@ -199,5 +162,29 @@ class ContactCustomer
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set customerCard
+     *
+     * @param \GfiBundle\Entity\CustomerCard $customerCard
+     *
+     * @return ContactCustomer
+     */
+    public function setCustomerCard(\GfiBundle\Entity\CustomerCard $customerCard = null)
+    {
+        $this->customerCard = $customerCard;
+
+        return $this;
+    }
+
+    /**
+     * Get customerCard
+     *
+     * @return \GfiBundle\Entity\CustomerCard
+     */
+    public function getCustomerCard()
+    {
+        return $this->customerCard;
     }
 }

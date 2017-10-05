@@ -3,8 +3,8 @@
 namespace GfiBundle\Controller;
 
 use GfiBundle\Entity\CustomerCard;
+use GfiBundle\Entity\StatusHistory;
 use GfiBundle\Form\CustomerCardType;
-use GfiBundle\Service\CardService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +30,7 @@ class CardController extends Controller
      * @param Request $request
      * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function createCardAction(Request $request)
+    public function createAction(Request $request)
     {
         $form = $this->createForm(CustomerCardType::class, $card = new CustomerCard());
         $form->handleRequest($request);
@@ -45,21 +45,31 @@ class CardController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param CustomerCard $card
+     * @param Request $request
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id)
+    public function editAction(CustomerCard $card, Request $request)
     {
-        
-        return $this->render('GfiBundle:Gfi/Card:editCard.html.twig');
+        $form = $this->createForm(CustomerCardType::class, $card);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $serviceCard = $this->get('gfi.card');
+            $response = $serviceCard->editCard($form, $card);
+            return new JsonResponse($response);
+        }
+        return $this->render('GfiBundle:Gfi/Card:editCard.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
+     * @param CustomerCard $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction($id)
+    public function viewAction(CustomerCard $id)
     {
         return $this->render('GfiBundle:Gfi/Card:viewCard.html.twig');
     }
-    
     
 }

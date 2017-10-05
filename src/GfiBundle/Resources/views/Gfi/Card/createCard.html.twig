@@ -1,1 +1,104 @@
-{{ form(form) }}
+<!DOCTYPE html>
+<html  >
+    <head>
+        <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GFI Companion - Create a customer card</title>
+
+    </head>
+
+    <body ng-app="gfiApp" >
+        <section ng-controller="accueilCtrl">
+            
+            <div>
+                <nav class="navbar navbar-inverse" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            
+                            <span class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="float:left; margin-left: 10px">
+
+                            <i class="glyphicon glyphicon-th-list" aria-hidden="true"></i>
+                            </span>
+                            
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Accueil</a></li>
+                                <li><a href="#about">New customer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            
+            
+            <!-- Page content -->
+                <div id="page-content-wrapper">
+                    <div class="page-content ">
+                        <div class="container-fluid">
+                            <form name="formCreateCustomerCard">
+	                            <div class="form-group " style="background-color: rgba(120,120,120,0.2)">
+	                                <span class="pull-left">NomCommercial</span>
+	                                <span class="pull-right">Titre</span>
+	                            </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="date" name="" readonly placeholder="Date">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Client">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Contact name">
+                                </div>
+                                <div class="form-group" ng-class="{'has-error': formCreateCustomerCard._titleCustomer.$invalid}">
+                                    <input class="form-control" name="_titleCustomer" ng-model="customer.title" id="" placeholder="Title" pattern="([a-z]+[A-Z]+\\w+)+">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Full description">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="3 main keys success factors">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Duration (months)" style="width:50%; display: table-row;">
+                                    <input class="form-control pull-right" type="text" name="" placeholder="Days/week" style="width:50%;">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Start at the latest">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Location">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="number" name="" placeholder="Rate (€ HT)">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" placeholder="Description file">
+                                </div>
+                                <div class="form-group ">
+                                    <input class="form-control" type="text" name="" readonly placeholder="Consultants name">
+                                </div>
+                                
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/gfi/css/site.css') }}">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.6/angular-resource.js"></script>
+        <script src="{{ asset("bundles/gfi/js/gfiFactories.js") }}"></script>
+        <script src="{{ asset("bundles/gfi/js/accueilController.js") }}"></script>
+        <script>
+            angular.module('gfiApp').config(function($interpolateProvider){
+            $interpolateProvider.startSymbol('{[{').endSymbol('}]}');});
+        </script>
+    </body>
+</html>

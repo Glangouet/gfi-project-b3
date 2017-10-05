@@ -1,0 +1,52 @@
+{% extends "GfiBundle:Gfi:layout.html.twig" %}
+
+{% block content %}
+
+    <a href="{{ path('gfi_customer_create')}}" class="btn btn-primary pull-right">Add customer</a>
+
+    <h1>Company list</h1>
+    <hr>
+
+    <table class="table table-responsive table-dashed">
+        <thead>
+        <th></th>
+        <th>Company name</th>
+        <th>Date creation</th>
+        <th>Nombre de contacts</th>
+        <th>View contact</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        </thead>
+
+        {% for customer in list %}
+            <tbody ng-repeat="client in listeClients track by $index">
+            <tr ng-class="{'peer': $index %2 == 0}">
+                <td style="text-align:center" align="center" class="col-sm-1">
+                    <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse"
+                       class="table-link accordian-toggle collapsed" aria-expanded="false">
+                        <span class="glyphicon glyphicon-th-list" style="color:black"></span>
+                    </a>
+                </td>
+                <td>
+                    {{ customer.customer_name }}
+                </td>
+                <td>
+                    {{ customer.date_creation }}
+                </td>
+                <td>
+                    {{ customer.customer_contact|length }}
+                </td>
+                <td>
+                    <a href="{{ path('gfi_customer_contact_list', { 'id': customer.customer_id }) }}" class="btn btn-primary">View contacts</a>
+                </td>
+                <td>
+                    <a href="{{ path('gfi_api_customer_remove', { 'id': customer.customer_id }) }}" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a href="{{ path('gfi_customer_edit', {'id': customer.customer_id }) }}" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -205,8 +205,14 @@ class CardService
             $newStatus->setName($status);
             $this->em->persist($newStatus);
             $this->em->flush();
-            return true;
-        } else return false;
+            return array(
+                'success' => true,
+                'message' => "Status changé avec succès"
+            );
+        } else return array(
+            'success' => false,
+            'message' => "erreur surevenue"
+        );
     }
 
     /**

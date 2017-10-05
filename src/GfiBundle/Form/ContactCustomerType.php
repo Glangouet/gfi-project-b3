@@ -17,7 +17,7 @@ class ContactCustomerType extends AbstractType
         $builder
             ->add('name')
             ->add('firstName')
-            ->add('Ajouter', SubmitType::class, array(
+            ->add('Envoyer', SubmitType::class, array(
                 'attr' => array(
                     'class' => "btn btn-primary"
                 )

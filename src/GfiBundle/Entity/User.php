@@ -26,6 +26,30 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
     private $comments;
+
+    /**
+     * @var string
+     * @ORM\Column(name="name",type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(name="first_name", type="string", length=255)
+     */
+    private $first_name;
+
+    /**
+     * @var string
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     * @ORM\Column(name="localisation", type="string", length=255)
+     */
+    private $localisation;
     
 
     /**
@@ -60,5 +84,101 @@ class User extends BaseUser
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set localisation
+     *
+     * @param string $localisation
+     *
+     * @return User
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    /**
+     * Get localisation
+     *
+     * @return string
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
     }
 }

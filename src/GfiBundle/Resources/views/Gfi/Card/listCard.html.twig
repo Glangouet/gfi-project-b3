@@ -31,7 +31,9 @@
                 {{ card.title }}
             </td>
             <td>
-                {{ card.customer_contact.0.customer.name }}
+                {% for contact in card.customer_contact %}
+                    {{ contact.customer.name }}
+                {% endfor %}
             </td>
             <td>
                 {% for customer_contact in card.customer_contact %}

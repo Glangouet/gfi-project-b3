@@ -51,7 +51,7 @@ class CustomerService
         return array(
             'customer_id' => $customer->getId(),
             'customer_name' => $customer->getName(),
-            'date_creation' => $customer->getCreationDate(),
+            'date_creation' => $customer->getCreationDate()->format('d M Y'),
             'customer_contact' => $contacts
         );
     }
@@ -75,7 +75,7 @@ class CustomerService
     public function returnAllCustomers()
     {
         $response = array();
-        $repoCustomers = $this->em->getRepository("GfiBundle:CustomerRepository");
+        $repoCustomers = $this->em->getRepository("GfiBundle:Customer");
         $customers = $repoCustomers->findAll();
         foreach ($customers as $customer) {
             $response[] = $this->returnCustomer($customer);
@@ -95,6 +95,26 @@ class CustomerService
             $this->em->flush();
             $response['success'] = true;
             $response['message'] = "Client ajoutée avec succès";
+            $response['data'] = $this->returnCustomer($customer);
+        } else {
+            $response['success'] = false;
+            $response['message'] = "Une erreur est présente dans votre formuaire";
+        }
+        return $response;
+    }
+
+    /**
+     * @param Form $form
+     * @param Customer $customer
+     * @return mixed
+     */
+    public function editCustomer(Form $form, Customer $customer)
+    {
+        if ($form->isValid()) {
+            $this->em->persist($customer);
+            $this->em->flush();
+            $response['success'] = true;
+            $response['message'] = "Client modifié avec succès";
             $response['data'] = $this->returnCustomer($customer);
         } else {
             $response['success'] = false;
@@ -155,6 +175,26 @@ class CustomerService
         } else {
             $response['success'] = false;
             $response['message'] = "Vous n'avez pas les droits de supression";
+        }
+        return $response;
+    }
+
+    /**
+     * @param Form $form
+     * @param ContactCustomer $contactCustomer
+     * @return mixed
+     */
+    public function editContactCustomer(Form $form, ContactCustomer $contactCustomer)
+    {
+        if ($form->isValid()) {
+            $this->em->persist($contactCustomer);
+            $this->em->flush();
+            $response['success'] = true;
+            $response['message'] = "Contact édité avec succès";
+            $response['data'] = $this->returnContactCustomer($contactCustomer);
+        } else {
+            $response['success'] = false;
+            $response['message'] = "Une erreur est présente dans votre formuaire";
         }
         return $response;
     }

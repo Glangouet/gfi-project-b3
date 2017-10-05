@@ -60,5 +60,34 @@ class ApiController extends Controller
         $response = $serviceCard->removeCard($card);
         return new JsonResponse($response);
     }
+
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
+    public function removeCustomerAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repoCustomer = $em->getRepository('GfiBundle:Customer');
+        $customer = $repoCustomer->find($id);
+        $serviceCustomer = $this->get('gfi.customer');
+        $response = $serviceCustomer->removeCustomer($customer);
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @param $id1
+     * @param $id2
+     * @return JsonResponse
+     */
+    public function removeCustomerContactAction($id1, $id2)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repoContactCustomer = $em->getRepository('GfiBundle:ContactCustomer');
+        $contactCustomer = $repoContactCustomer->find($id2);
+        $serviceCustomer = $this->get('gfi.customer');
+        $response = $serviceCustomer->removeContactCustomer($contactCustomer);
+        return new JsonResponse($response);
+    }
     
 }

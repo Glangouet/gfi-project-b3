@@ -1,0 +1,18 @@
+{% extends "GfiBundle:Gfi:layout.html.twig" %}
+
+{% block content %}
+    {{ dump(card) }}
+
+    <br>
+
+    {{ form(form) }}
+
+
+    <br>
+
+
+    {% for com in coms %}
+        {{ dump(com) }}
+    {% endfor %}
+
+{% endblock %}

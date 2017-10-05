@@ -85,11 +85,11 @@ class CustomerCard
     private $title;
 
     /**
-     * @var text
+     * @var string
      * 
-     * @ORM\Column(name="fullDecription", type="text")
+     * @ORM\Column(name="fullDescription", type="text")
      */
-    private $fullDecription;
+    private $fullDescription;
 
     /**
      * @ORM\ManyToMany(targetEntity="User")
@@ -102,13 +102,13 @@ class CustomerCard
     private $contactsCustomer;
 
     /**
-     * @ORM\OneToMany(targetEntity="StatusHistory", mappedBy="customerCard")
+     * @ORM\OneToMany(targetEntity="StatusHistory", mappedBy="customerCard", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="statusHistory", referencedColumnName="id")
      */
     private $statusHistory;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="comments", referencedColumnName="id")
      */
     private $comments;
@@ -124,7 +124,7 @@ class CustomerCard
         $this->statusHistory = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
-   
+
 
     /**
      * Get id
@@ -329,6 +329,54 @@ class CustomerCard
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return CustomerCard
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set fullDescription
+     *
+     * @param string $fullDescription
+     *
+     * @return CustomerCard
+     */
+    public function setFullDescription($fullDescription)
+    {
+        $this->fullDescription = $fullDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get fullDescription
+     *
+     * @return string
+     */
+    public function getFullDescription()
+    {
+        return $this->fullDescription;
+    }
+
+    /**
      * Add user
      *
      * @param \GfiBundle\Entity\User $user
@@ -365,11 +413,11 @@ class CustomerCard
     /**
      * Add contactsCustomer
      *
-     * @param \GfiBundle\Entity\contactCustomer $contactsCustomer
+     * @param \GfiBundle\Entity\ContactCustomer $contactsCustomer
      *
      * @return CustomerCard
      */
-    public function addContactsCustomer(\GfiBundle\Entity\contactCustomer $contactsCustomer)
+    public function addContactsCustomer(\GfiBundle\Entity\ContactCustomer $contactsCustomer)
     {
         $this->contactsCustomer[] = $contactsCustomer;
 
@@ -379,9 +427,9 @@ class CustomerCard
     /**
      * Remove contactsCustomer
      *
-     * @param \GfiBundle\Entity\contactCustomer $contactsCustomer
+     * @param \GfiBundle\Entity\ContactCustomer $contactsCustomer
      */
-    public function removeContactsCustomer(\GfiBundle\Entity\contactCustomer $contactsCustomer)
+    public function removeContactsCustomer(\GfiBundle\Entity\ContactCustomer $contactsCustomer)
     {
         $this->contactsCustomer->removeElement($contactsCustomer);
     }

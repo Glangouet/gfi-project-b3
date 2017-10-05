@@ -2,8 +2,10 @@
 
 namespace GfiBundle\Controller;
 
+use GfiBundle\Entity\Comment;
 use GfiBundle\Entity\CustomerCard;
 use GfiBundle\Entity\StatusHistory;
+use GfiBundle\Form\CommentType;
 use GfiBundle\Form\CustomerCardType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -65,11 +67,25 @@ class CardController extends Controller
 
     /**
      * @param CustomerCard $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction(CustomerCard $id)
+    public function viewAction(CustomerCard $id, Request $request)
     {
-        return $this->render('GfiBundle:Gfi/Card:viewCard.html.twig');
+        $serviceComment = $this->get('gfi.comment');
+        $coms = $serviceComment->returnCommentsCard($id);
+
+        $form = $this->createForm(CommentType::class, $comment = new Comment());
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $response = $serviceComment->addComment($form, $comment, $id);
+            return new JsonResponse($response);
+        }
+        return $this->render('GfiBundle:Gfi/Card:viewCard.html.twig', array(
+            'card' => $id,
+            'form' => $form->createView(),
+            'coms' => $coms
+        ));
     }
     
 }

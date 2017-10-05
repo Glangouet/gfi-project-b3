@@ -36,7 +36,7 @@ class Customer
     private $creationDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="ContactCustomer", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="ContactCustomer", mappedBy="customer", cascade={"persist", "remove"})
      */
     private $contactCustomer;
     

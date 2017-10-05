@@ -2,6 +2,7 @@
 
 namespace GfiBundle\Entity;
 
+use ClassesWithParents\D;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,7 +40,14 @@ class StatusHistory
      * @ORM\ManyToOne(targetEntity="CustomerCard", inversedBy="statusHistory")
      */
     private $customerCard;
-    
+
+    /**
+     * StatusHistory constructor.
+     */
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id

@@ -65,7 +65,16 @@ class CardService
             );
         }
 
+        $historyStatus = array();
+        foreach ($card->getStatusHistory() as $status) {
+            $historyStatus[] = array(
+                "name" => $status->getName(),
+                "date" => $status->getDate()
+            );
+        }
+
         return array(
+            'card_id' => $card->getId(),
             'commerciaux' => $users,
             'customer_contact' => $contact,
             'duration_month' => $card->getDurationMonth(),
@@ -75,7 +84,11 @@ class CardService
             'rate' => $card->getRate(),
             'date_start_at_the_latest' => $card->getStartAtTheLatest()->format('d M Y'),
             'date_creation' => $card->getDateCreation()->format('d M Y'),
-            'date_modification' => $card->getDateModification()->format('d M Y')
+            'date_modification' => $card->getDateModification()->format('d M Y'),
+            'description' => $card->getFullDescription(),
+            'title' => $card->getTitle(),
+            'last_status' => $this->lastStatusCard($card),
+            'status_history' => $historyStatus
         );
     }
 
@@ -123,6 +136,14 @@ class CardService
             if (!$verif) $card->addUser($this->currentUser);
             $this->em->persist($card);
             $this->em->flush();
+
+
+            $statusHistory = new StatusHistory();
+            $statusHistory->setName('Open');
+            $statusHistory->setCustomerCard($card);
+            $this->em->persist($statusHistory);
+            $this->em->flush();
+
             $response['success'] = true;
             $response['message'] = "Fiche ajoutée avec succès";
             $response['data'] = $this->returnCard($card);
@@ -158,7 +179,7 @@ class CardService
      */
     public function removeCard(CustomerCard $card)
     {
-        if ($card->getUser() == $this->currentUser || in_array('ROLE_ADMIN', $this->currentUser->getRoles()))
+        if (in_array('ROLE_ADMIN', $this->currentUser->getRoles()))
         {
             $this->em->remove($card);
             $this->em->flush();

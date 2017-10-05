@@ -1,0 +1,128 @@
+<?php
+
+namespace GfiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CustomerCard
+ *
+ * @ORM\Table(name="customer_card")
+ * @ORM\Entity(repositoryClass="GfiBundle\Repository\CustomerCardRepository")
+ */
+class CustomerCard
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     */
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     *@ORM\Column(name="dateModification", type="datetime")
+     */
+    private $dateModification;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="keySuccessFactor", type="string", length=255)
+     */
+    private $keySuccessFactor;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="durationMonth", type="integer")
+     */
+    private $durationMonth;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbDayWeek", type="integer")
+     */
+    private $nbDayWeek;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startAtTheLatest", type="datetime")
+     */
+    private $startAtTheLatest;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="rate", type="float")
+     */
+    private $rate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var text
+     * 
+     * @ORM\Column(name="fullDecription", type="text")
+     */
+    private $fullDecription;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="ContactCustomer")
+     */
+    private $contactsCustomer;
+
+    /**
+     * @ORM\OneToMany(targetEntity="StatusHistory", mappedBy="customerCard")
+     * @ORM\JoinColumn(name="statusHistory", referencedColumnName="id")
+     */
+    private $statusHistory;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="card")
+     * @ORM\JoinColumn(name="comments", referencedColumnName="id")
+     */
+    private $comments;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+        $this->dateModification = new \DateTime();
+        $this->contactCustomer = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->statusHistory = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

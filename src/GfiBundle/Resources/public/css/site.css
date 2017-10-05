@@ -1,3 +1,7 @@
 .peer{
 	background-color: rgba(253,133,44,0.2);
 }
+
+@media (min-width: @screen-sm-min) {
+	font-size:32px;
+}

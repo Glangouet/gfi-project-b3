@@ -49,3 +49,11 @@ gfi_admin_addUser:
 gfi_admin_userList:
     path:     /admin/userList
     defaults: { _controller: GfiBundle:Admin:userList }
+
+gfi_api_card_by_user:
+    path:     /api/cardsByUser/{id}
+    defaults: { _controller: GfiBundle:Api:cardByUser }
+
+gfi_api_detail_card:
+    path:     /api/customerCard/{id}
+    defaults: { _controller: GfiBundle:Api:detailCard }

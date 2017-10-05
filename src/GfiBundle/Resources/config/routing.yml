@@ -14,6 +14,9 @@ gfi_card_view:
     path:     /view/{id}
     defaults: { _controller: GfiBundle:Card:view }
 
+
+
+
 gfi_customer_list:
     path:     /customer
     defaults: { _controller: GfiBundle:Customer:list }
@@ -22,25 +25,29 @@ gfi_customer_create:
     path:     /customer/create
     defaults: { _controller: GfiBundle:Customer:create }
 
+gfi_customer_edit:
+    path:     /customer/edit/{id}
+    defaults: { _controller: GfiBundle:Customer:edit }
+
+
+
+
+
 gfi_customer_contact_create:
     path:     /customer/{id}/contact/create
     defaults: { _controller: GfiBundle:CustomerContact:create }
 
 gfi_customer_contact_edit:
-    path:     /customer/contact/edit
+    path:     /customer/{id1}/contact/edit/{id2}
     defaults: { _controller: GfiBundle:CustomerContact:edit }
 
 gfi_customer_contact_list:
-    path:     /customer/contact/list
+    path:     /customer/{id}/contact
     defaults: { _controller: GfiBundle:CustomerContact:list }
 
-gfi_customer_edit:
-    path:     /customer/edit/{id}
-    defaults: { _controller: GfiBundle:Customer:edit }
 
-gfi_customer_view:
-    path:     /customer/view/{id}
-    defaults: { _controller: Gfibundle:Customer:view }
+
+
 
 gfi_admin_addUser:
     path:     /admin/addUser
@@ -49,6 +56,11 @@ gfi_admin_addUser:
 gfi_admin_userList:
     path:     /admin/userList
     defaults: { _controller: GfiBundle:Admin:userList }
+
+
+
+
+
 
 gfi_api_card_by_user_session:
     path:     /api/cardsByUserSession
@@ -64,4 +76,12 @@ gfi_api_detail_card:
 
 gfi_api_card_remove:
     path:     /api/customerCard/remove/{id}
-    defaults: { _controller: GfiBundle:Api:removeCard}
+    defaults: { _controller: GfiBundle:Api:removeCard }
+
+gfi_api_customer_remove:
+    path:     /api/customer/remove/{id}
+    defaults: { _controller: GfiBundle:Api:removeCustomer }
+
+gfi_api_customer_contact_remove:
+    path:     /api/customer/{id1}/contacts/remove/{id2}
+    defaults: { _controller: GfiBundle:Api:removeCustomerContact }

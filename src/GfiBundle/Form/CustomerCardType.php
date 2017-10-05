@@ -58,7 +58,7 @@ class CustomerCardType extends AbstractType
                 'choice_label' => 'username',
                 'multiple' => true
             ))
-            ->add('Ajouter cette fiche', SubmitType::class, array(
+            ->add('Envoyer', SubmitType::class, array(
                 'attr' => array(
                     "class" => "btn btn-primary"
                 )

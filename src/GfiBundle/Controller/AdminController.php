@@ -5,6 +5,7 @@ namespace GfiBundle\Controller;
 use FOS\UserBundle\Form\Type\RegistrationFormType;
 use GfiBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -18,6 +19,21 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(RegistrationFormType::class, $user = new User());
+        $form
+            ->add('roles', ChoiceType::class, array(
+                    'label' => "Roles",
+                    'choices' => array(
+                        'Admin' => 'ROLE_ADMIN',
+                        'Commercial' => 'ROLE_COMMERCIAL',
+                    ),
+                    'multiple' => true
+                )
+            )
+            ->add('name')
+            ->add('firstname')
+            ->add('phone')
+            ->add('localisation')
+        ;
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {

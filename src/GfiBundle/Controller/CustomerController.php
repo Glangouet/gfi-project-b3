@@ -13,10 +13,15 @@ class CustomerController extends Controller
 
     /**
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(Request $request)
     {
-
+        $serviceCustomer = $this->get('gfi.customer');
+        $list = $serviceCustomer->returnAllCustomers();
+        return $this->render('GfiBundle:Gfi/Customer:listCustomer.html.twig', array(
+            'list' => $list
+        ));
     }
     
     /**
@@ -38,20 +43,23 @@ class CustomerController extends Controller
     }
 
     /**
-     * @param $id
+     * @param Customer $customer
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id, Request $request)
+    public function editAction(Customer $customer, Request $request)
     {
-        
-    }
-
-    /**
-     * @param $id
-     */
-    public function viewAction($id)
-    {
-        
+        $form = $this->createForm(CustomerType::class, $customer);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $serviceCustomer = $this->get('gfi.customer');
+            $response = $serviceCustomer->editCustomer($form, $customer);
+            return new JsonResponse($response);
+        } else {
+            return $this->render('GfiBundle:Gfi/Customer:editCustomer.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }
     }
 
 }

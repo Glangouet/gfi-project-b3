@@ -7,6 +7,7 @@ use GfiBundle\Entity\CustomerCard;
 use GfiBundle\Entity\StatusHistory;
 use GfiBundle\Form\CommentType;
 use GfiBundle\Form\CustomerCardType;
+use GfiBundle\Form\StatusHistoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,15 +54,27 @@ class CardController extends Controller
      */
     public function editAction(CustomerCard $card, Request $request)
     {
+        $serviceCard = $this->get('gfi.card');
+
+        $formStatus = $this->createForm(StatusHistoryType::class, $status = new StatusHistory());
+        $formStatus->handleRequest($request);
+        
+        if ($formStatus->isSubmitted()) {
+            $response = $serviceCard->changeStatus($card, $status->getName());
+            return new JsonResponse($response);
+        }
+        
         $form = $this->createForm(CustomerCardType::class, $card);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted()) {
-            $serviceCard = $this->get('gfi.card');
             $response = $serviceCard->editCard($form, $card);
             return new JsonResponse($response);
         }
+        
         return $this->render('GfiBundle:Gfi/Card:editCard.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(), 
+            'formStatus' => $formStatus->createView()
         ));
     }
 

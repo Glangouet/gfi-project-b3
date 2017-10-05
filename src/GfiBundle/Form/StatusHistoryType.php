@@ -3,11 +3,12 @@
 namespace GfiBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CustomerType extends AbstractType
+class StatusHistoryType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,13 +16,19 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('Envoyer', SubmitType::class, array(
-                'attr' => array(
-                    'class' => "btn btn-primary"
-                )
+            ->add('name', ChoiceType::class, array(
+                'choices' => array(
+                    "open" => "open",
+                    'win' => 'win',
+                    'lost' => 'lost'
+                ),
+                'label' => 'Modifier l\'état de cette fiche'
             ))
-        ;
+            ->add("Modifier l'etat", SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'btn btn-primary'
+                )
+            ));
     }
     
     /**
@@ -30,7 +37,7 @@ class CustomerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'GfiBundle\Entity\Customer'
+            'data_class' => 'GfiBundle\Entity\StatusHistory'
         ));
     }
 
@@ -39,7 +46,7 @@ class CustomerType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'gfibundle_customer';
+        return 'gfibundle_statushistory';
     }
 
 

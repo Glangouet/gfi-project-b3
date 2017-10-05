@@ -13,11 +13,14 @@ class CustomerContactController extends Controller
 {
 
     /**
-     * @param Request $request
+     * @param Customer $customer
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request)
+    public function listAction(Customer $customer)
     {
-
+        return $this->render('GfiBundle:Gfi/ContactCustomer:listContactCustomer.html.twig', array(
+            'customer' => $customer
+        ));
     }
 
     /**
@@ -36,25 +39,31 @@ class CustomerContactController extends Controller
             return new JsonResponse($response);
         }
         return $this->render('GfiBundle:Gfi/ContactCustomer:createContactCustomer.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'customer' => $id
         ));
     }
 
     /**
-     * @param $id
+     * @param Customer $id1
+     * @param ContactCustomer $id2
      * @param Request $request
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id, Request $request)
+    public function editAction(Customer $id1, ContactCustomer $id2, Request $request)
     {
-
-    }
-
-    /**
-     * @param $id
-     */
-    public function viewAction($id)
-    {
-
+        $form = $this->createForm(ContactCustomerType::class, $id2);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $serviceCustomer = $this->get('gfi.customer');
+            $response = $serviceCustomer->editContactCustomer($form, $id2);
+            return new JsonResponse($response);
+        } else {
+            return $this->render('GfiBundle:Gfi/ContactCustomer:editContactCustomer.html.twig', array(
+                'form' => $form->createView(),
+                'customer' => $id1
+            ));
+        }
     }
 
 }

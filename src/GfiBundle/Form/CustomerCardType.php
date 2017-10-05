@@ -27,6 +27,8 @@ class CustomerCardType extends AbstractType
             ))
             ->add('location')
             ->add('rate')
+            ->add('title')
+            ->add('fullDescription')
             ->add('contactsCustomer', EntityType::class, array(
                 'class' => 'GfiBundle:ContactCustomer',
                 'query_builder' => function (EntityRepository $er) {

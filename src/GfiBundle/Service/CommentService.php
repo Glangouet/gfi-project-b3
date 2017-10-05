@@ -38,8 +38,8 @@ class CommentService
     public function returnComment(Comment $comment)
     {
         return array(
-            'userId' => $comment->d,
-            'userName' => $comment->d,
+            'userId' => $comment->getUser()->getId(),
+            'userName' => $comment->getUser()->getUsername(),
             'idComment' => $comment->getId(),
             'title' => $comment->getTitle(),
             'comment' => $comment->getComment()
@@ -63,11 +63,14 @@ class CommentService
     /**
      * @param Form $form
      * @param Comment $comment
+     * @param CustomerCard $card
      * @return mixed
      */
-    public function addComment(Form $form, Comment $comment)
+    public function addComment(Form $form, Comment $comment, CustomerCard $card)
     {
         if ($form->isValid()) {
+            $comment->setCard($card);
+            $comment->setUser($this->currentUser);
             $this->em->persist($comment);
             $this->em->flush();
             $response['success'] = true;

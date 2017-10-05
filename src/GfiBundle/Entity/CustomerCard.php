@@ -78,6 +78,20 @@ class CustomerCard
     private $rate;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var text
+     * 
+     * @ORM\Column(name="fullDecription", type="text")
+     */
+    private $fullDecription;
+
+    /**
      * @ORM\ManyToMany(targetEntity="User")
      */
     private $users;

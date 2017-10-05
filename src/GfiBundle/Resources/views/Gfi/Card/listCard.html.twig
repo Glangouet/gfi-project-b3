@@ -2,47 +2,76 @@
 
 {% block content %}
     <table class="col-sm-12">
-        <tr>
-            <th class="col-sm-1"></th>
-            <th class="col-sm-3">Status</th>
-            <th class="col-sm-4">Name</th>
-            <th class="col-sm-4">Date</th>
-        </tr>
-        <tbody ng-repeat="client in listeClients track by $index">
-        <tr ng-class="{'peer': $index %2 == 0}">
+                                <thead>
+                                    <th class="col-sm-1"> </th>
+                                    <th class="col-sm-1">Status</th>
+                                    <th class="col-sm-4">Title</th>
+                                    <th class="col-sm-3">Name</th>
+                                    <th class="col-sm-3">Date</th>
+                                </thead>
 
-            <td style="text-align:center" align="center" class="col-sm-1">
-                <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse"
-                   class="table-link accordian-toggle collapsed" aria-expanded="false">
-                    <span class="glyphicon glyphicon-th-list" style="color:black"></span>
-                </a>
-            </td>
-            <td class="col-sm-3">
-                <label>
-                    {[{client.nom}]}
-                </label>
-            </td>
-            <td class="col-sm-4">
-                <label>
-                    {[{client.titre}]}
-                </label>
-            </td>
-            <td class="col-sm-4">
-                <label>
-                    {[{client.date}]}
-                </label>
-            </td>
-        </tr>
-        <tr ng-repeat-end class="no-background no-hover">
-            <td col-sm-1></td>
-            <td colspan="3" col-sm-11>
-
-                <div class="collapse" id="_detailClient-{[{$index}]}">
-                    aaaaa
-                </div>
-            </td>
-
-        </tr>
-        </tbody>
-    </table>
+                                <tbody ng-repeat="client in listeClients track by $index">
+                                {% for card in list %}
+                                {{ dump(card) }}
+                                    <tr ng-class="{'peer': $index %2 == 0}">
+                                   
+                                        <td style="text-align:center" align="center" class="col-sm-1">
+                                            <a data-target="#_detailClient-{[{$index}]}" role="button" data-toggle="collapse" class="table-link accordian-toggle collapsed" aria-expanded="false" >
+                                                <span class="glyphicon glyphicon-th-list" style="color:black"></span>
+                                            </a>
+                                        </td>
+                                        <td class="col-sm-1">
+                                             <label >
+                                                {{ card.customer_contact.0.customer.name }}
+                                             </label>   
+                                        </td>
+                                        <td class="col-sm-4">
+                                             <label >
+                                                {[{client.title}]}    
+                                             </label>   
+                                        </td>
+                                        <td class="col-sm-3">
+                                             <label >
+                                                {{ card.customer_contact.0.name }}
+                                                {{ card.customer_contact.0.first_name }}
+                                             </label>   
+                                        </td>
+                                        <td class="col-sm-3">
+                                             <label >
+                                                {{ card.date_creation }}
+                                             </label>   
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat-end class="no-background no-hover">
+                                        <td col-sm-1></td>
+                                        <td colspan="4" col-sm-11>
+                                            <div class="collapse" id="_detailClient-{[{$index}]}">
+                                                <div class="row">
+                                                    <span class="pull-lef">Created: {[{client.dateCreation}]}</span>
+                                                    <span class="pull-righ">Updated: {[{client.dateModification}]}</span>
+                                                </div>
+                                                <div class="row">{[{client.name}]}</div>
+                                                <div class="row">{[{client.contactName}]}</div>
+                                                <div class="row">{[{client.title}]}</div>
+                                                <div class="row">{[{client.fullDescription}]}</div>
+                                                <div class="row">{[{client.mainKeys}]}</div>
+                                                <div class="row">
+                                                    <span class="pull-lef">Duration: {[{client.duration}]}</span>
+                                                    <span class="pull-righ">({[{client.daysWeek}]})</span>
+                                                </div>
+                                                <div class="row">{[{client.startLatest}]}</div>
+                                                <div class="row">{[{client.location}]}</div>
+                                                <div class="row">{[{client.Rate}]}</div>
+                                                <div class="row">{[{client.description}]}</div>
+                                                <div class="row">{[{client.consultant}]}</div>
+                                                <div class="row">{[{client.commentaire}]}</div>
+                                                <div class="row">{[{client.dateCreation}]}</div>
+                                                <div class="row">{[{client.dateCreation}]}</div>
+                                                <div class="row">{[{client.dateCreation}]}</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
 {% endblock %}

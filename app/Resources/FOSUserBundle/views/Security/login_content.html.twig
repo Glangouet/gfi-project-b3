@@ -5,18 +5,18 @@
 {% endif %}
 
 <style>
-    html, body {height:100%;}
-    html {width:100%;}
+    html, body {height:100%;width:100%;}
+    
     body {background-image: linear-gradient(white, grey); text-align: center; vertical-align: middle;}
 </style>
 
-<div class="container" style="height:100%">
+<div class="container">
     
-    <div class="logoLogGfi photo">
-        <img src="{{ asset('bundles/gfi/img/gfiLogo.png') }}" class="logoLogGfi">
+    <div>
+        <img src="{{ asset('bundles/gfi/img/gfiLogoMini.png') }}" class="photo">
     </div>
 
-    <div class="col-sm-10 offset-sm-1 details">
+    <div class="col-xs-10 col-xs-offset-1 details">
         <form action="{{ path("fos_user_security_check") }}" method="post" name="logForm">
             {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -25,15 +25,15 @@
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                        <input id="username" required placeholder="Email" class="form-control" name="_username" ng-model="user.mail" pattern="[\w0-9\.-]*@gfi\.com" ng-class="{'is-invalid': logForm._username.$invalid && logForm._username.$dirty}" 
+                        <input id="username" required placeholder="Email" class="form-control" name="_username"  pattern="[\w0-9\.-]*@gfi\.com"  
                         />
                     </div>
 
                     <div class="input-group">
                         <span class="input-group-addon" style="min-width:41px; "><i class="fa fa-lock" style="margin: auto;" aria-hidden="true"></i></span>
-                        <input id="password" required placeholder="Password" class="form-control" name="_password" ng-model="user.password" type="password" ng-class="{'is-invalid': user._password.length === 0}" />
+                        <input id="password" required placeholder="Password" class="form-control" name="_password"  type="password" />
                     </div>
-                         <button type="submit" class="btn form-group" id="_submit" name="_submit" ng-disabled="logForm.$invalid || logForm.$pristine" style="margin-top: 1vh; background-color:lightgrey">
+                         <button type="submit" class="btn form-group" id="_submit" name="_submit"  style="margin-top: 1vh; background-color:lightgrey">
                             Se connecter
                          </button>
                      

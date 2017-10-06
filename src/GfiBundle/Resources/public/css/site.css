@@ -12,16 +12,43 @@
     height: fit-content;
  } 
 
-.photo { 
-   display: inline-block; 
-   vertical-align:middle;
-   width: 300px; 
-   height: 300px; 
-}
+
 
 .logoLogGfi{
-    width:90vw;
-    height:45vh;
-    max-width: 600px;
-    max-height: 200px;
+    width:14vw;
+    height:10vh;
+    max-width: 66px;
+    max-height: 50px;
 }
+
+.logoLogin{
+  width:300px;
+  height:300px;
+}
+
+@media only screen and (min-width: 768px) {
+    .photo {
+        width:300px;
+        height:300px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .photo { 
+   display: inline-block; 
+   vertical-align:middle;
+   width: 80vw; 
+   height: 40vh; 
+  }
+}
+
+@media only screen and (min-width: 768px) {
+    .tableAdaptee { 
+   width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    min-height: .01%;
+    overflow-x: auto;
+  }
+}
+    

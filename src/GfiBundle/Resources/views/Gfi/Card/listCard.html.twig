@@ -14,7 +14,7 @@
         <th></th>
         </thead>
         {% for card in list %}
-        <tbody>
+        <tbody class="item-{{ card.card_id }}">
         <tr>
             <td style="text-align:center" align="center">
                 <a data-target="#_detailClient-{{card.card_id}}" role="button" data-toggle="collapse"
@@ -43,8 +43,9 @@
             </td>
             <td><a style="margin-right: 10px" href="{{ path('gfi_card_edit', {'card': card.card_id }) }}" class="fa fa-pencil"></a>
             </td>
-            <td><a style="margin-right: 10px" href="{{ path('gfi_api_card_remove', { 'id': card.card_id }) }}"
-                   class="fa fa-trash-o text-danger"></a>
+            <td><a style="margin-right: 10px" data-url="{{ path('gfi_api_card_remove', { 'id': card.card_id }) }}"
+                   data-id="{{ card.card_id }}"
+                   class="btn btn-sm btn-danger deleteItem fa fa-trash-o text-danger"></a>
             </td>
             <td>
                 <a style="margin-right: 10px; vertical-align: middle;" href="{{ path('gfi_card_view', { 'id': card.card_id }) }}"
@@ -52,7 +53,7 @@
             </td>
         </tr>
         </tbody>
-        <tbody>
+        <tbody class="item-{{ card.card_id }}">
         <tr class="no-background no-hover">
             <td></td>
             <td colspan="7">
@@ -99,10 +100,6 @@
                     <div class="form-group">
                     <label class="control-label" for="description">Description</label>
                         <input readonly class="form-control" id="description" value="{{card.description}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="customer_contact">Contact</label>
-                        <input readonly class="form-control" id="customer_contact" value="{{card.customer_contact.0.name}}" />
                     </div>
                 </div>
             </td>

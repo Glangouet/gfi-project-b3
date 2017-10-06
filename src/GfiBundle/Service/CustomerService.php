@@ -94,7 +94,7 @@ class CustomerService
             $this->em->persist($customer);
             $this->em->flush();
             $response['success'] = true;
-            $response['message'] = "Client ajoutée avec succès";
+            $response['message'] = "Client ajouté avec succès";
             $response['data'] = $this->returnCustomer($customer);
         } else {
             $response['success'] = false;

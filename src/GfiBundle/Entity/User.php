@@ -29,25 +29,25 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="name",type="string", length=255)
+     * @ORM\Column(name="name",type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string
-     * @ORM\Column(name="first_name", type="string", length=255)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     private $first_name;
 
     /**
      * @var string
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
-     * @ORM\Column(name="localisation", type="string", length=255)
+     * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
      */
     private $localisation;
     

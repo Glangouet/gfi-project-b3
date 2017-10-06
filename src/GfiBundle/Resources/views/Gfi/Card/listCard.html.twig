@@ -1,7 +1,19 @@
 {% extends "GfiBundle:Gfi:layout.html.twig" %}
 
 {% block content %}
-    <table class="tableAdaptee">
+
+    <input type="text" value="" placeholder="Cherchez un client" class="search">
+<br><br>
+    <script>
+        $(document).ready(function () {
+           $('.search').on('click', function (e) {
+               e.preventDefaults();
+
+           })
+        });
+    </script>
+
+    <table class="tableAdaptee table-striped table-center">
         <thead>
         <th></th>
         <th>State</th>
@@ -14,97 +26,7 @@
         <th></th>
         </thead>
         {% for card in list %}
-        <tbody class="item-{{ card.card_id }}">
-        <tr>
-            <td style="text-align:center" align="center">
-                <a data-target="#_detailClient-{{card.card_id}}" role="button" data-toggle="collapse"
-                   class="table-link accordian-toggle collapsed" aria-expanded="false">
-                    <span class="fa fa-arrow-right" style="padding:0px 5px 0px 5px; transform: rotate(45deg);"></span>
-                </a>
-            </td>
-            <td>
-                {{ card.last_status.name }}
-            </td>
-            <td>
-                {{ card.title }}
-            </td>
-            <td>
-                {% for contact in card.customer_contact %}
-                    {{ contact.customer.name }}
-                {% endfor %}
-            </td>
-            <td>
-                {% for customer_contact in card.customer_contact %}
-                    {{ customer_contact.name }} {{ customer_contact.first_name }} <br>
-                {% endfor %}
-            </td>
-            <td>
-                {{ card.date_creation }}
-            </td>
-            <td><a style="margin-right: 10px" href="{{ path('gfi_card_edit', {'card': card.card_id }) }}" class="fa fa-pencil"></a>
-            </td>
-            <td><a style="margin-right: 10px" data-url="{{ path('gfi_api_card_remove', { 'id': card.card_id }) }}"
-                   data-id="{{ card.card_id }}"
-                   class="btn btn-sm btn-danger deleteItem fa fa-trash-o text-danger"></a>
-            </td>
-            <td>
-                <a style="margin-right: 10px; vertical-align: middle;" href="{{ path('gfi_card_view', { 'id': card.card_id }) }}"
-                   class="fa fa-plus-square-o"></a>
-            </td>
-        </tr>
-        </tbody>
-        <tbody class="item-{{ card.card_id }}">
-        <tr class="no-background no-hover">
-            <td></td>
-            <td colspan="7">
-                <div class="collapse" id="_detailClient-{{card.card_id}}" style="margin-top: 10px">
-                    
-                    <div class="form-group pull-left" style="width:47%">
-                    <label class="control-label" for="card.date_creation">Created</label>
-                        <input readonly class="form-control" id="card.date_creation" value="{{card.date_creation}}" />
-                    </div>
-
-                    <div class="form-group pull-right" style="width:47%">
-                    <label class="control-label  for="date_modification">Updated</label>
-                        <input readonly class="form-control" id="date_modification" value="{{card.date_modification}}" />
-                    </div>
-
-                    <div class="form-group">
-                    <label class="control-label" for="key_success_factor">Key success factor</label>
-                        <input readonly class="form-control" id="key_success_factor" value="{{card.key_success_factor}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="duration_month">Duration</label>
-                        <input readonly class="form-control" id="duration_month" value="{{card.duration_month}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="nb_day_by_week">Days / Week</label>
-                        <input readonly class="form-control" id="nb_day_by_week" value="{{card.nb_day_by_week}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="date_start_at_the_latest">Start at the latest</label>
-                        <input readonly class="form-control" id="date_start_at_the_latest" value="{{card.date_start_at_the_latest}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="location">Location</label>
-                        <input readonly class="form-control" id="location" value="{{card.location}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="rate">Rate</label>
-                        <input readonly class="form-control" id="rate" value="{{card.rate}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="title">Title</label>
-                        <input readonly class="form-control" id="title" value="{{card.title}}" />
-                    </div>
-                    <div class="form-group">
-                    <label class="control-label" for="description">Description</label>
-                        <input readonly class="form-control" id="description" value="{{card.description}}" />
-                    </div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
+            {% include 'GfiBundle:Gfi/Card:includeListCard.html.twig' with {'card': card } %}
         {% endfor %}
         </tbody>
     </table>

@@ -1,17 +1,17 @@
 {% extends "GfiBundle:Gfi:layout.html.twig" %}
 
 {% block content %}
-    <table class="table table-responsive table-dashed">
+    <table class="tableAdaptee">
         <thead>
         <th></th>
-        <th>Status</th>
+        <th>State</th>
         <th>Title</th>
-        <th>Company name</th>
-        <th>Contact name</th>
-        <th>Date creation</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>View</th>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Started</th>
+        <th></th>
+        <th></th>
+        <th></th>
         </thead>
         {% for card in list %}
         <tbody class="item-{{ card.card_id }}">
@@ -19,7 +19,7 @@
             <td style="text-align:center" align="center">
                 <a data-target="#_detailClient-{{card.card_id}}" role="button" data-toggle="collapse"
                    class="table-link accordian-toggle collapsed" aria-expanded="false">
-                    <span class="glyphicon glyphicon-th-list" style="color:black"></span>
+                    <span class="fa fa-arrow-right" style="padding:0px 5px 0px 5px; transform: rotate(45deg);"></span>
                 </a>
             </td>
             <td>
@@ -41,31 +41,31 @@
             <td>
                 {{ card.date_creation }}
             </td>
-            <td><a href="{{ path('gfi_card_edit', {'card': card.card_id }) }}" class="btn btn-sm btn-warning">Edit</a>
+            <td><a style="margin-right: 10px" href="{{ path('gfi_card_edit', {'card': card.card_id }) }}" class="fa fa-pencil"></a>
             </td>
-            <td><a data-url="{{ path('gfi_api_card_remove', { 'id': card.card_id }) }}"
+            <td><a style="margin-right: 10px" data-url="{{ path('gfi_api_card_remove', { 'id': card.card_id }) }}"
                    data-id="{{ card.card_id }}"
-                   class="btn btn-sm btn-danger deleteItem">Delete</a>
+                   class="btn btn-sm btn-danger deleteItem fa fa-trash-o text-danger"></a>
             </td>
             <td>
-                <a href="{{ path('gfi_card_view', { 'id': card.card_id }) }}"
-                   class="btn btn-sm btn-primary">View</a>
+                <a style="margin-right: 10px; vertical-align: middle;" href="{{ path('gfi_card_view', { 'id': card.card_id }) }}"
+                   class="fa fa-plus-square-o"></a>
             </td>
         </tr>
         </tbody>
         <tbody class="item-{{ card.card_id }}">
         <tr class="no-background no-hover">
             <td></td>
-            <td colspan="8">
-                <div class="collapse" id="_detailClient-{{card.card_id}}">
+            <td colspan="7">
+                <div class="collapse" id="_detailClient-{{card.card_id}}" style="margin-top: 10px">
                     
-                    <div class="form-group">
+                    <div class="form-group pull-left" style="width:47%">
                     <label class="control-label" for="card.date_creation">Created</label>
                         <input readonly class="form-control" id="card.date_creation" value="{{card.date_creation}}" />
                     </div>
 
-                    <div class="form-group">
-                    <label class="control-label" for="date_modification">Updated</label>
+                    <div class="form-group pull-right" style="width:47%">
+                    <label class="control-label  for="date_modification">Updated</label>
                         <input readonly class="form-control" id="date_modification" value="{{card.date_modification}}" />
                     </div>
 
@@ -108,4 +108,6 @@
         {% endfor %}
         </tbody>
     </table>
+    
+    
 {% endblock %}
